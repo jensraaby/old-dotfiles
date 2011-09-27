@@ -14,7 +14,7 @@ proxyaddress=`system_profiler SPNetworkDataType|grep "HTTP Proxy Server"|awk {'s
 proxyport=`system_profiler SPNetworkDataType|grep "HTTP Proxy Port"|awk {'sub(/^.*:[ \t]*/, "", $0); print $0;'}`
 if [ -n $proxyaddress ];
 	then
-		export ALL_PROXY=http://$proxyaddress:$proxyport
+		ALL_PROXY=http://$proxyaddress:$proxyport
 		export http_proxy=ALL_PROXY
 		export HTTP_PROXY=ALL_PROXY
 		export HTTPS_PROXY=ALL_PROXY
