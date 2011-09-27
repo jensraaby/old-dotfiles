@@ -1,6 +1,3 @@
-# Nice git completion
-source ~/.git-completion.sh
-
 # Alias a few commands 
 alias ls='ls -G' #Colours enabled
 alias ll='ls -lG' #Show details
@@ -15,7 +12,7 @@ alias la='ls -alG' #Show all files on lines with colours
 # OS X command for getting proxy address: tosystem_profiler SPNetworkDataType|grep "HTTP Proxy Server"|awk {'sub(/^.*:[ \t]*/, "", $0); print $0;'}
 proxyaddress=`system_profiler SPNetworkDataType|grep "HTTP Proxy Server"|awk {'sub(/^.*:[ \t]*/, "", $0); print $0;'}`
 proxyport=`system_profiler SPNetworkDataType|grep "HTTP Proxy Port"|awk {'sub(/^.*:[ \t]*/, "", $0); print $0;'}`
-if [-n $proxyaddress];
+if [ -n $proxyaddress ];
 	then
 		export ALL_PROXY=http://$proxyaddress:$proxyport
 		export http_proxy=ALL_PROXY
@@ -26,6 +23,9 @@ if [-n $proxyaddress];
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
+
+# Nice git completion
+source ~/.git-completion.sh
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 complete -W "NSGlobalDomain" defaults
