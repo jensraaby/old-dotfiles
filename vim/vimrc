@@ -23,9 +23,15 @@
  Bundle 'git://git.wincent.com/command-t.git'
  
  " Jens's additions:
- Bundle 'Syntastic'
+ Bundle 'scrooloose/syntastic'
  Bundle 'altercation/vim-colors-solarized'
  Bundle 'Valloric/YouCompleteMe'
+ 
+ :set laststatus=2
+ :set tabstop=4
+ :set shiftwidth=4
+ :set expandtab
+ :set backspace=indent,eol,start
  
  " ...
 

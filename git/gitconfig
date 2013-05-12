@@ -38,6 +38,9 @@
 	email = jens+github@m.raaby.co.uk
 [alias]
 	co = checkout
-	log1 = log --pretty=oneline --abbrev-commit
+	ci = commit
+    rb = rebase
+    fa = fetch --all
+    log1 = log --pretty=oneline --abbrev-commit
 [github]
 	user = jensraaby
