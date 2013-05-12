@@ -1,0 +1,5 @@
+
+To install:
+git clone https://github.com/jensraaby/dotfiles.git ~/.dotfiles
+
+TODO: rakefile that does all the cool stuff
