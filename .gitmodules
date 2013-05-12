@@ -1,0 +1,12 @@
+[submodule "zsh/prezto"]
+	path = zsh/prezto
+	url = git://github.com/sorin-ionescu/prezto.git
+[submodule "vim/bundle/vundle"]
+	path = vim/bundle/vundle
+	url = https://github.com/gmarik/vundle.git
+[submodule "fonts/powerline-fonts"]
+	path = fonts/powerline-fonts
+	url = https://github.com/Lokaltog/powerline-fonts
+[submodule "powerline/repo"]
+	path = powerline/repo
+	url = git://github.com/Lokaltog/powerline.git
