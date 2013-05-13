@@ -44,3 +44,5 @@
     log1 = log --pretty=oneline --abbrev-commit
 [github]
 	user = jensraaby
+[credential]
+	helper = osxkeychain

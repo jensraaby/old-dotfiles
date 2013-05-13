@@ -44,6 +44,20 @@ task :tmux do
   
 end
 
+task :git do
+  puts "Setting up git config"
+  puts
+  install_files(Dir.glob('git/*'))
+  
+  puts 
+  puts "Setting up os x keychain auth"
+  # TODO check for credential helper first!
+  run %{git config --global credential.helper osxkeychain}
+  
+  
+end
+
+
 task :zsh do
   puts
   puts "Setting up ZSH with prezto"
