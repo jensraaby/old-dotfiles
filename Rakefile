@@ -1,4 +1,4 @@
-# This rakefile was inspired by (partially copied from) yadr
+# This rakefile was inspired by ( & partially copied from) yadr
 
 require 'rake'
 require 'fileutils'
@@ -30,7 +30,7 @@ end
 task :start_brewing => [:install] do
    puts
    puts "Installing a few things with Brew"
-   run %{brew install automake ctags git hub }
+   run %{brew install automake ctags git hub cmake}
    puts 
 end
 
@@ -55,6 +55,48 @@ task :git do
   run %{git config --global credential.helper osxkeychain}
   
   
+end
+
+task :vim do
+  puts "Lovely vim with YouCompleteMe"
+  puts 
+  run %{brew uninstall python}
+
+  # TODO check if it's already installed
+  install_files(['vim', 'vim/vimrc'])
+  
+  #  Problematic python because of macvim formula:
+  # https://github.com/mxcl/homebrew/issues/17908
+  # run %{cd /System/Library/Frameworks/Python.framework/Versions && sudo mv Current Current-sys}
+  # pyver = "#{`python -c 'import sys;print(sys.version[:5])'`.strip}"
+  # run %{sudo ln -s /usr/local/Cellar/python/#{pyver}/Frameworks/Python.framework/Versions/2.7 /System/Library/Frameworks/Python.framework/Versions/Current}
+  run %{brew install macvim --env-std --override-system-vim}
+  
+  # run %{sudo rm /System/Library/Frameworks/Python.framework/Versions/Current}
+  # run %{cd /System/Library/Frameworks/Python.framework/Versions && sudo mv Current-sys Current}
+  
+  puts 
+  puts "Recursively initialising git submodules"
+  
+  run %{git submodule update --init --recursive}
+  
+  puts "\nInstalling build tools for YCM"
+  run %{brew install cmake automake boost}
+  
+  puts "Install vim bundles"
+  run %{vim +BundleInstall +qall}
+  
+  
+  puts
+  puts 'Now you need to compile YouCompleteMe.'
+  run %{echo 'cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer' | pbcopy }
+
+end
+
+task :youcompleteme do
+  run %{cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer }
+    # puts "pwd #{ENV['PWD']}"
+     # && ./install.sh --clang-completer && cd #{$DOTFILES}}
 end
 
 
@@ -87,10 +129,17 @@ end
 
 task :gitsubmodules do
   puts
-  puts "Getting submodules"
-  run %{git submodule init}
-  run %{git submodule update}
+  puts "Init and update submodules (also recursively e.g. for vundler)"
+  run %{git submodule update --init --recursive}
 end
+
+task :python do
+  puts
+  puts "Installs Python 2 with homebrew"
+  run %{brew install python}
+  
+end
+
 
 private
 
@@ -107,6 +156,11 @@ def homebrew()
     end
     run %{brew update}
 end
+
+# def link_folder(path)
+#   source = "#{ENV['PWD']}/#{path}"
+# 
+# end
 
 def install_files(files, method = :symlink)
   files.each do |f|
