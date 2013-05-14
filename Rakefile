@@ -6,11 +6,9 @@ require 'fileutils'
 # Where all these files are supposed to be:
 $DOTFILES = "#{ENV['HOME']}/.dotfiles"
 
-
 desc "Install homebrew (Mac only) and symlink some basics"
 task :install => [:gitsubmodules] do
     homebrew if RUBY_PLATFORM.downcase.include?("darwin")
-    
 end
 
 desc "Update the repostitory from github and update the submodules"
@@ -22,11 +20,10 @@ task :update do
   run %{brew update}
   puts
   puts "Updating submodules"
-  run %{git submodule update}
-  
+  run %{git submodule update --recursive}
 end
 
-
+desc "Install a few brew kegs"
 task :start_brewing => [:install] do
    puts
    puts "Installing a few things with Brew"
@@ -36,108 +33,86 @@ end
 
 task :tmux do
   puts "Installing tmux"
-  
   run %{brew install tmux reattach-to-user-namespace}
   puts
   install_files(['tmux/tmux.conf'])
-  
-  
 end
 
 task :git do
-  puts "Setting up git config"
-  puts
-  install_files(Dir.glob('git/*'))
-  
-  puts 
-  puts "Setting up os x keychain auth"
-  # TODO check for credential helper first!
-  run %{git config --global credential.helper osxkeychain}
-  
-  
+    puts "Setting up git config"
+    puts
+    install_files(Dir.glob('git/*'))
+    puts 
+    puts "Setting up os x keychain auth"
+    # TODO check for credential helper first!
+    run %{git config --global credential.helper osxkeychain}
 end
 
-task :vim do
-  puts "Lovely vim with YouCompleteMe"
-  puts 
-  run %{brew uninstall python}
-
-  # TODO check if it's already installed
-  install_files(['vim', 'vim/vimrc'])
-  
-  #  Problematic python because of macvim formula:
-  # https://github.com/mxcl/homebrew/issues/17908
-  # run %{cd /System/Library/Frameworks/Python.framework/Versions && sudo mv Current Current-sys}
-  # pyver = "#{`python -c 'import sys;print(sys.version[:5])'`.strip}"
-  # run %{sudo ln -s /usr/local/Cellar/python/#{pyver}/Frameworks/Python.framework/Versions/2.7 /System/Library/Frameworks/Python.framework/Versions/Current}
-  run %{brew install macvim --env-std --override-system-vim}
-  
-  # run %{sudo rm /System/Library/Frameworks/Python.framework/Versions/Current}
-  # run %{cd /System/Library/Frameworks/Python.framework/Versions && sudo mv Current-sys Current}
-  
-  puts 
-  puts "Recursively initialising git submodules"
-  
-  run %{git submodule update --init --recursive}
-  
-  puts "\nInstalling build tools for YCM"
-  run %{brew install cmake automake boost}
-  
-  puts "Install vim bundles"
-  run %{vim +BundleInstall +qall}
-  
-  
-  puts
-  puts 'Now you need to compile YouCompleteMe.'
-  run %{echo 'cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer' | pbcopy }
+task :vim => :python do
+    puts "Lovely vim with YouCompleteMe"
+    puts 
+    # TODO check if it's already installed
+    install_files(['vim', 'vim/vimrc'])
+    #  Problematic python because of macvim formula:
+    # https://github.com/mxcl/homebrew/issues/17908
+    run %{brew install macvim --env-std --override-system-vim}
+    puts 
+    puts "Recursively initialising git submodules"
+    run %{git submodule update --init --recursive}
+    
+    puts "\nInstalling build tools for YCM"
+    run %{brew install cmake automake boost}
+    puts "Install vim bundles"
+    run %{vim +BundleInstall +qall}
+    puts
+    puts 'Now you need to compile YouCompleteMe.'
+    run %{cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer}
 
 end
-
-task :youcompleteme do
-  run %{cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer }
-    # puts "pwd #{ENV['PWD']}"
-     # && ./install.sh --clang-completer && cd #{$DOTFILES}}
-end
-
 
 task :zsh do
-  puts
-  puts "Setting up ZSH with prezto"
-  
-  run %{brew install zsh}
-  
-  unless File.exists?(File.join(ENV['ZDOTDIR'] || ENV['HOME'], ".zprezto"))
-      run %{ ln -nfs "#{$DOTFILES}/zsh/prezto" "${ZDOTDIR:-$HOME}/.zprezto" }
-      run %{ cd "#{$DOTFILES}/zsh/prezto" && git submodule init && git submodule update}
-      # install_files(Dir.glob('zsh/prezto/runcoms/z*'))
-      
-      run %{chsh -s /bin/zsh}
-  end
-  
-  # Copy my custom zsh files (will possibly overwrite the ones we just installed)
-  install_files(Dir.glob('zsh/z*'))
-  
-  #reload the shell
-  run %{exec $SHELL -l}
+    puts
+    puts "Setting up ZSH with prezto"
+    run %{brew install zsh}
+    unless File.exists?(File.join(ENV['ZDOTDIR'] || ENV['HOME'], ".zprezto"))
+        run %{ ln -nfs "#{$DOTFILES}/zsh/prezto" "${ZDOTDIR:-$HOME}/.zprezto" }
+        run %{ cd "#{$DOTFILES}/zsh/prezto" && git submodule init && git submodule update}
+        run %{chsh -s /bin/zsh}
+    end
+
+    # Copy my custom zsh files 
+    install_files(Dir.glob('zsh/z*'))
+
+    #reload the shell
+    run %{exec $SHELL -l}
 end
 
 task :uninstallzsh do
-  if File.exists?(File.join(ENV['ZDOTDIR'] || ENV['HOME'], ".zprezto"))
-    run %{unlink ~/.zprezto}
-  end
+    if File.exists?(File.join(ENV['ZDOTDIR'] || ENV['HOME'], ".zprezto"))
+        run %{unlink ~/.zprezto}
+    end
 end
 
 task :gitsubmodules do
-  puts
-  puts "Init and update submodules (also recursively e.g. for vundler)"
-  run %{git submodule update --init --recursive}
+    puts
+    puts "Init and update submodules (also recursively e.g. for vundler)"
+    run %{git submodule update --init --recursive}
 end
 
 task :python do
-  puts
-  puts "Installs Python 2 with homebrew"
-  run %{brew install python}
-  
+   
+    # Need to get version (python --version doesn't seem to return properly)
+    pyver = `python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))'`
+
+    unless pyver.strip.eql? "2.7.4" and RUBY_PLATFORM.downcase.include?("darwin")
+        puts
+        puts "Installing Python 2.7.4 from python.org"
+        run %{curl -O http://www.python.org/ftp/python/2.7.4/python-2.7.4-macosx10.6.dmg}
+        run %{hdiutil attach python-2.7.4-macosx10.6.dmg}
+        run %{sudo installer -pkg "/Volumes/Python 2.7.4/Python.mpkg" -target /}
+        run %{hdiutil detach "/Volumes/Python 2.7.4/"}
+        run %{rm -f python-2.7.4-macosx10.6.dmg}
+    end
 end
 
 
@@ -163,30 +138,31 @@ end
 # end
 
 def install_files(files, method = :symlink)
-  files.each do |f|
-    file = f.split('/').last
-    source = "#{ENV['PWD']}/#{f}"
-    target = "#{ENV['HOME']}/.#{file}"
-    
-    puts "=========#{file}=========="
-    puts "Source: #{source}"
-    puts "Target: #{target}"
-    
-    # Let's backup the old one, if it's not from this repo
-    if File.exists?(target) && (!File.symlink?(target) ||
-       (File.symlink?(target) && File.readlink(target) != source))
-          puts "[Overwriting] #{target}...leaving original at original.#{file}..."
-          run %{ mv "$HOME/.#{file}" "$HOME/original.#{file}" }
+    files.each do |f|
+        file = f.split('/').last
+        source = "#{ENV['PWD']}/#{f}"
+        target = "#{ENV['HOME']}/.#{file}"
+
+        puts "=========#{file}=========="
+        puts "Source: #{source}"
+        puts "Target: #{target}"
+        puts
+        # Let's backup the old one, if it's not from this repo
+        if File.exists?(target) && (!File.symlink?(target) ||
+                                    (File.symlink?(target) && File.readlink(target) != source))
+            puts "[Overwriting] #{target}...leaving original at original.#{file}..."
+            run %{ mv "$HOME/.#{file}" "$HOME/original.#{file}" }
+        end
+
+        # This where the magic happens
+        case method
+        when :symlink
+            puts "Creating symlink"
+            run %{ln -nfs "#{source}" "#{target}"}
+        when :copy
+            puts "Copying directly"
+            run %{cp -f "#{source}" "#{target}"}
+        end
+
     end
-        
-    case method
-    when :symlink
-      puts "Creating symlink"
-      run %{ln -nfs "#{source}" "#{target}"}
-    when :copy
-      puts "Copying directly"
-      run %{cp -f "#{source}" "#{target}"}
-    end
-      
-  end
 end
