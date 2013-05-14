@@ -1,5 +1,8 @@
 
 To install:
-git clone https://github.com/jensraaby/dotfiles.git ~/.dotfiles
+You need Rake and Ruby (doesn't matter which ruby)
+gem install rake
 
-TODO: rakefile that does all the cool stuff
+git clone https://github.com/jensraaby/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles/
+rake install

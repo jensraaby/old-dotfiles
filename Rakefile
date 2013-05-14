@@ -9,6 +9,11 @@ $DOTFILES = "#{ENV['HOME']}/.dotfiles"
 desc "Install homebrew (Mac only) and symlink some basics"
 task :install => [:gitsubmodules] do
     homebrew if RUBY_PLATFORM.downcase.include?("darwin")
+
+    Rake::Task["start_brewing"].execute
+    Rake::Task["tmux"].execute
+
+
 end
 
 desc "Update the repostitory from github and update the submodules"
@@ -32,6 +37,7 @@ task :start_brewing => [:install] do
 end
 
 task :tmux do
+  puts
   puts "Installing tmux"
   run %{brew install tmux reattach-to-user-namespace}
   puts
@@ -55,6 +61,7 @@ task :vim => :python do
     install_files(['vim', 'vim/vimrc'])
     #  Problematic python because of macvim formula:
     # https://github.com/mxcl/homebrew/issues/17908
+    run %{brew install vim}
     run %{brew install macvim --env-std --override-system-vim}
     puts 
     puts "Recursively initialising git submodules"
@@ -87,12 +94,6 @@ task :zsh do
     run %{exec $SHELL -l}
 end
 
-task :uninstallzsh do
-    if File.exists?(File.join(ENV['ZDOTDIR'] || ENV['HOME'], ".zprezto"))
-        run %{unlink ~/.zprezto}
-    end
-end
-
 task :gitsubmodules do
     puts
     puts "Init and update submodules (also recursively e.g. for vundler)"
@@ -115,6 +116,15 @@ task :python do
     end
 end
 
+task :ruby do
+    puts
+    puts "Installing rbenv"
+    run %{brew install rbenv ruby-build rbenv-gemset} 
+    #TODO check if installed
+    #run %{git clone git://github.com/sstephenson/rbenv.git ~/.rbenv}
+    #run %{echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc}
+    #irun %{echo 'eval "$(rbenv init -)"' >> ~/.zshrc}
+end
 
 private
 
