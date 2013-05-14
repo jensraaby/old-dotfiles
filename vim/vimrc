@@ -1,8 +1,9 @@
  set nocompatible               " be iMproved
  filetype off                   " required!
  syntax on
-
-
+ set encoding=utf-8
+ set showcmd
+ 
  set rtp+=~/.vim/bundle/vundle/
  call vundle#rc()
 
@@ -10,31 +11,26 @@
  " required! 
  Bundle 'gmarik/vundle'
 
- " My Bundles here:
- "
- " original repos on github
- Bundle 'tpope/vim-fugitive'
- Bundle 'Lokaltog/vim-easymotion'
- Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
- Bundle 'tpope/vim-rails.git'
- " vim-scripts repos
- Bundle 'L9'
- Bundle 'FuzzyFinder'
- 
- " non github repos
- Bundle 'git://git.wincent.com/command-t.git'
- 
  " Jens's additions:
- Bundle 'scrooloose/syntastic'
+ set rtp+=~/.dotfiles/powerline/repo/powerline/bindings/vim
+ "Bundle 'scrooloose/syntastic'
  Bundle 'altercation/vim-colors-solarized'
  Bundle 'Valloric/YouCompleteMe'
- 
+
+ "" Whitespace, tabs etc
+ set nowrap
  :set laststatus=2
  :set tabstop=4
  :set shiftwidth=4
  :set expandtab
  :set backspace=indent,eol,start
- 
+
+"" Search
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
  " ...
 
  filetype plugin indent on     " required!

@@ -36,7 +36,7 @@ task :start_brewing => [:install] do
    puts 
 end
 
-task :tmux do
+task :tmux => [:powerline] do
   puts
   puts "Installing tmux"
   run %{brew install tmux reattach-to-user-namespace}
@@ -54,7 +54,7 @@ task :git do
     run %{git config --global credential.helper osxkeychain}
 end
 
-task :vim => :python do
+task :vim => [:python,:powerline] do
     puts "Lovely vim with YouCompleteMe"
     puts 
     # TODO check if it's already installed
@@ -75,6 +75,18 @@ task :vim => :python do
     puts 'Now you need to compile YouCompleteMe.'
     run %{cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer}
 
+end
+
+task :powerline do
+    puts
+    puts "Installing powerline to user packages"
+    run %{pip install --user git+git://github.com/Lokaltog/powerline}
+    #run %{ln -sf #{ENV['HOME']}/Library/Python/2.7/lib/python/site-packages/Powerline #{$DOTFILES}/powerline/repo}
+    Rake::Task["gitsubmodules"].execute
+    run %{mkdir $HOME/.config}
+    run %{ln -sf "#{$DOTFILES}/powerline/config" "$HOME/.config/powerline"}
+    run %{ln -sf fonts/powerline-fonts/Inconsolata/Inconsolata\ for\ Powerline.otf $HOME/Library/Fonts}
+    run %{ln -sf fonts/powerline-fonts/Meslo/Meslo\ LG\ L\ Regular\ for\ Powerline.otf $HOME/Library/Fonts}
 end
 
 task :zsh do
@@ -114,6 +126,8 @@ task :python do
         run %{hdiutil detach "/Volumes/Python 2.7.4/"}
         run %{rm -f python-2.7.4-macosx10.6.dmg}
     end
+    puts "Installing PIP"
+    run %{sudo easy_install pip}
 end
 
 task :ruby do
