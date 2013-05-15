@@ -6,7 +6,7 @@ require 'fileutils'
 # Where all these files are supposed to be:
 $DOTFILES = "#{ENV['HOME']}/.dotfiles"
 
-desc "Install homebrew (Mac only) and symlink some basics"
+desc "Install homebrew (Mac only), Tmux, Powerline, Vim, zsh"
 task :install => [:gitsubmodules] do
     homebrew if RUBY_PLATFORM.downcase.include?("darwin")
 
@@ -36,6 +36,7 @@ task :start_brewing => [:install] do
    puts 
 end
 
+desc "Install Tmux with Powerline"
 task :tmux => [:powerline] do
   puts
   puts "Installing tmux"
@@ -44,6 +45,7 @@ task :tmux => [:powerline] do
   install_files(['tmux/tmux.conf'])
 end
 
+desc "Install git with OS X Keychain credential helper"
 task :git do
     puts "Setting up git config"
     puts
@@ -54,6 +56,7 @@ task :git do
     run %{git config --global credential.helper osxkeychain}
 end
 
+desc "Vim along with Powerline, YCM, Python"
 task :vim => [:python,:powerline] do
     puts "Lovely vim with YouCompleteMe"
     puts 
@@ -77,6 +80,7 @@ task :vim => [:python,:powerline] do
 
 end
 
+desc "Powerline - the new beta version for Tmux,Vim,Zsh"
 task :powerline do
     puts
     puts "Installing powerline to user packages"
@@ -89,7 +93,8 @@ task :powerline do
     run %{ln -sf fonts/powerline-fonts/Meslo/Meslo\ LG\ L\ Regular\ for\ Powerline.otf $HOME/Library/Fonts}
 end
 
-task :zsh do
+desc "Zsh with Prezto"
+task :zsh => [:powerline] do
     puts
     puts "Setting up ZSH with prezto"
     run %{brew install zsh}
@@ -112,6 +117,7 @@ task :gitsubmodules do
     run %{git submodule update --init --recursive}
 end
 
+desc "Install Python 2.7.4 from Python.org. Homebrew version is OK, but problematic with MacVim"
 task :python do
    
     # Need to get version (python --version doesn't seem to return properly)
@@ -130,10 +136,12 @@ task :python do
     run %{sudo easy_install pip}
 end
 
+desc "Install rbenv. TODO: Decide if RVM is still easier to use"
 task :ruby do
     puts
     puts "Installing rbenv"
     run %{brew install rbenv ruby-build rbenv-gemset} 
+    install_files(['ruby/gemrc'])
     #TODO check if installed
     #run %{git clone git://github.com/sstephenson/rbenv.git ~/.rbenv}
     #run %{echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc}
