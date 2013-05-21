@@ -89,8 +89,8 @@ task :powerline do
     Rake::Task["gitsubmodules"].execute
     run %{mkdir $HOME/.config}
     run %{ln -sf "#{$DOTFILES}/powerline/config" "$HOME/.config/powerline"}
-    run %{ln -sf fonts/powerline-fonts/Inconsolata/Inconsolata\ for\ Powerline.otf $HOME/Library/Fonts}
-    run %{ln -sf fonts/powerline-fonts/Meslo/Meslo\ LG\ L\ Regular\ for\ Powerline.otf $HOME/Library/Fonts}
+    run %{ln -sf "fonts/powerline-fonts/Inconsolata/Inconsolata\ for\ Powerline.otf" $HOME/Library/Fonts}
+    run %{ln -sf "fonts/powerline-fonts/Meslo/Meslo\ LG\ L\ Regular\ for\ Powerline.otf" $HOME/Library/Fonts}
 end
 
 desc "Zsh with Prezto"
