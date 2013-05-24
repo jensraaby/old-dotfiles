@@ -11,9 +11,10 @@ task :install => [:gitsubmodules] do
     homebrew if RUBY_PLATFORM.downcase.include?("darwin")
 
     Rake::Task["start_brewing"].execute
+    Rake::Task["powerline"].execute
+    Rake::Task["vim"].execute
     Rake::Task["tmux"].execute
-
-
+    
 end
 
 desc "Update the repostitory from github and update the submodules"

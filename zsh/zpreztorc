@@ -101,14 +101,11 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 # zstyle ':prezto:module:screen' auto-start 'yes'
 
 #
-# SSH-Agent
+# SSH
 #
 
-# Enable ssh-agent forwarding.
-zstyle ':prezto:module:ssh-agent' forwarding 'yes'
-
 # Set ssh-agent identities to load.
-zstyle ':prezto:module:ssh-agent' identities 'id_rsa' 
+zstyle ':prezto:module:ssh:load' identities 'id_rsa' 
 
 #
 # Syntax Highlighting
