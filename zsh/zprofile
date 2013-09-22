@@ -4,4 +4,4 @@
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
-
+source $HOME/.rvm/scripts/rvm

@@ -48,6 +48,9 @@ end
 
 desc "Install git with OS X Keychain credential helper"
 task :git do
+    puts "Brewing git"
+    puts
+    run %{brew install git}
     puts "Setting up git config"
     puts
     install_files(Dir.glob('git/*'))

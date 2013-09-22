@@ -11,5 +11,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
-
-export EDITOR=vim
+GOROOT=/usr/local/Cellar/go/1.1.1/
+export GOROOT
+GOPATH=$GOROOT/bin/
+export GOPATH

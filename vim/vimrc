@@ -1,5 +1,10 @@
  set nocompatible               " be iMproved
  filetype off                   " required!
+ filetype plugin indent off
+
+" Go plugins
+set rtp+=$GOROOT/misc/vim
+ 
  syntax on
  set encoding=utf-8
  set showcmd
@@ -16,6 +21,9 @@
  "Bundle 'scrooloose/syntastic'
  Bundle 'altercation/vim-colors-solarized'
  Bundle 'Valloric/YouCompleteMe'
+ Bundle 'Blackrush/vim-gocode'
+
+
 
  "" Whitespace, tabs etc
  set nowrap
