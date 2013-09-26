@@ -1,53 +1,79 @@
- set nocompatible               " be iMproved
- filetype off                   " required!
- filetype plugin indent off
+set nocompatible               " be iMproved
+filetype on
+filetype off                   " required!
+filetype plugin indent off
+syntax on
+set encoding=utf-8
+set showcmd
+set ruler
+set number
+set autoread
 
-" Go plugins
+" Vundle handles bundles
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" Jens's bundles:
+" replacing powerline with airline - should be less painful
+Bundle 'bling/vim-airline'
+"Bundle 'scrooloose/syntastic'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'Blackrush/vim-gocode'
+Bundle 'scrooloose/nerdtree'
+Bundle 'Lokaltog/vim-easymotion'
+" Go plugins - need to refactor this perhaps?
 set rtp+=$GOROOT/misc/vim
- 
- syntax on
- set encoding=utf-8
- set showcmd
- 
- set rtp+=~/.vim/bundle/vundle/
- call vundle#rc()
-
- " let Vundle manage Vundle
- " required! 
- Bundle 'gmarik/vundle'
-
- " Jens's additions:
- set rtp+=~/.dotfiles/powerline/repo/powerline/bindings/vim
- "Bundle 'scrooloose/syntastic'
- Bundle 'altercation/vim-colors-solarized'
- Bundle 'Valloric/YouCompleteMe'
- Bundle 'Blackrush/vim-gocode'
 
 
-
- "" Whitespace, tabs etc
- set nowrap
- :set laststatus=2
- :set tabstop=4
- :set shiftwidth=4
- :set expandtab
- :set backspace=indent,eol,start
+"" Whitespace, tabs etc
+set nowrap
+:set laststatus=2
+:set tabstop=2
+:set shiftwidth=2
+:set expandtab
+:set backspace=indent,eol,start
 
 "" Search
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
+set hlsearch " highlight search
+set incsearch " incremental search
+set ignorecase 
+set smartcase " capitals in searches make them case sensitive
+set showmatch " brackets
 
- " ...
+"" Other useful stuff:
+set mouse=a " use mouse
+set foldlevel=9999 " Expand folds
+set history=500 " lines of history
+set number 
+set mat=2 " seconds of blinking when matching parentheses
+set smartindent " special indentation
+set autoindent
+set smarttab
+set laststatus=2 "always display statusline
+set noshowmode " Hide the default mode text under the powerline
 
- filetype plugin indent on     " required!
- "
- " Brief help
- " :BundleList          - list configured bundles
- " :BundleInstall(!)    - install(update) bundles
- " :BundleSearch(!) foo - search(or refresh cache first) for foo
- " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
- "
- " see :h vundle for more details or wiki for FAQ
- " NOTE: comments after Bundle command are not allowed..
+" Setup airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'solarized'
+
+" Leader - from Haegin's config
+" Use , instead of \ as the leader key
+let mapleader = ","
+" " Which means we should use \ instead of , for backwards f search
+noremap \ ,
+
+" ...
+filetype plugin indent on     " required!
+"
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
