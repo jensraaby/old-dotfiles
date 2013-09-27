@@ -56,7 +56,7 @@ set smartindent " special indentation
 set autoindent
 set smarttab
 set laststatus=2 "always display statusline
-set noshowmode " Hide the default mode text under the powerline
+"set noshowmode " Hide the default mode text under the powerline
 
 " Setup airline
 let g:airline_powerline_fonts = 1
