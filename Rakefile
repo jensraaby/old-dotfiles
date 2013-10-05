@@ -169,6 +169,13 @@ task :ruby do
   #irun %{echo 'eval "$(rbenv init -)"' >> ~/.zshrc}
 end
 
+desc "Symlink slate"
+task :slate do
+  puts
+  puts "Linking slate JS config"
+  install_files(['slate/slate.js'])
+end
+
 private
 
 def run(cmd)
