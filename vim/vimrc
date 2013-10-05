@@ -19,13 +19,15 @@ Bundle 'gmarik/vundle'
 " Jens's bundles:
 " replacing powerline with airline - should be less painful
 Bundle 'bling/vim-airline'
-"Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/syntastic'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
 
 " Go plugins - need to refactor this perhaps?
 set rtp+=$GOROOT/misc/vim
