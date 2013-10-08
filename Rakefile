@@ -13,7 +13,7 @@ task :install => [:gitsubmodules] do
   Rake::Task["start_brewing"].execute
   #    Rake::Task["powerline"].execute
   Rake::Task["vim"].execute
-  Rake::Task["tmux"].execute
+#  Rake::Task["tmux"].execute
   Rake::Task["fonts"].execute
 
 end
@@ -108,7 +108,7 @@ task :fonts => [:gitsubmodules] do
 end
 
 desc "Zsh with Prezto"
-task :zsh => [:powerline] do
+task :zsh do
   puts
   puts "Setting up ZSH with prezto"
   run %{brew install zsh}
