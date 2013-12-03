@@ -28,7 +28,6 @@ zstyle ':prezto:load' pmodule \
   'terminal' \
   'editor' \
   'history' \
-  'history-substring-search' \
   'directory' \
   'spectrum' \
   'utility' \
@@ -40,12 +39,16 @@ zstyle ':prezto:load' pmodule \
   'osx' \
   'prompt'
 
+ # 'history-substring-search' \
+
+
+
 #
 # Editor
 #
 
 # Set the key mapping style to 'emacs' or 'vi'.
-zstyle ':prezto:module:editor' keymap 'vi'
+zstyle ':prezto:module:editor' key-bindings 'emacs'
 
 # Auto convert .... to ../..
 # zstyle ':prezto:module:editor' dot-expansion 'yes'
@@ -69,13 +72,13 @@ zstyle ':prezto:module:editor' keymap 'vi'
 #
 
 # Set the query found color.
-# zstyle ':prezto:module:history-substring-search:color' found ''
+ zstyle ':prezto:module:history-substring-search:color' found ''
 
 # Set the query not found color.
-# zstyle ':prezto:module:history-substring-search:color' not-found ''
+ zstyle ':prezto:module:history-substring-search:color' not-found ''
 
 # Set the search globbing flags.
-# zstyle ':prezto:module:history-substring-search' globbing-flags ''
+ zstyle ':prezto:module:history-substring-search' globbing-flags ''
 
 #
 # Pacman
@@ -104,8 +107,8 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 # SSH
 #
 
-# Set ssh-agent identities to load.
-zstyle ':prezto:module:ssh:load' identities 'id_rsa' 
+# Set the SSH identities to load into the agent.
+zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'id_github'
 
 #
 # Syntax Highlighting
@@ -134,10 +137,19 @@ zstyle ':prezto:module:ssh:load' identities 'id_rsa'
 # Auto set the tab and window titles.
 zstyle ':prezto:module:terminal' auto-title 'yes'
 
+# Set the window title format.
+zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
+
+# Set the tab title format.
+zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
+
 #
 # Tmux
 #
 
-# Auto start a session when Zsh is launched.
-zstyle ':prezto:module:tmux' auto-start 'yes'
+# Auto start a session when Zsh is launched in a local terminal.
+zstyle ':prezto:module:tmux:auto-start' local 'yes'
+
+# Auto start a session when Zsh is launched in a SSH connection.
+zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 

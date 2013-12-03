@@ -61,10 +61,18 @@ set autoindent
 set smarttab
 set laststatus=2 "always display statusline
 "set noshowmode " Hide the default mode text under the powerline
+let python_space_errors = 1
+let python_highlight_space_errors = 1
 
 " Setup airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
+
+" Syntastic
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_check_on_open=1
+
 
 " Leader - from Haegin's config
 " Use , instead of \ as the leader key
