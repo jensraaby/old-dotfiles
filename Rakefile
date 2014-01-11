@@ -176,6 +176,14 @@ task :slate do
   install_files(['slate/slate.js'])
 end
 
+desc "Emacs"
+task :emacs do
+  puts
+  puts "Installing Emacs from homebrew"
+  run %{brew install emacs --srgb --cocoa}
+  # install_files()
+end
+
 private
 
 def run(cmd)

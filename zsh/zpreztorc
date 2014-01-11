@@ -37,9 +37,8 @@ zstyle ':prezto:load' pmodule \
   'haskell' \
   'git' \
   'osx' \
-  'prompt'
-
- # 'history-substring-search' \
+  'prompt' \
+  'history-substring-search' 
 
 
 
