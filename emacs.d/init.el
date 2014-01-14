@@ -22,6 +22,7 @@
 
 (setq my-packages
   (append '(color-theme tomorrow-theme solarized-theme)
+          '(powerline)
           '(markdown-mode auctex ag magit) 
           '(auto-complete autopair)
           '(exec-path-from-shell python-mode)
@@ -38,14 +39,21 @@
 (setq-default TeX-master nil)
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
+(setq TeX-PDF-mode t)
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (autoload 'flyspell-mode "flyspell" "On-the-fly spelling checker." t)
 (setq ispell-dictionary "british")
+(setq ispell-list-command "--list")
 
 
 (require 'color-theme-solarized)
 (require 'color-theme-tomorrow)
 (color-theme-tomorrow)
+
+; Make status bar nicer
+(require 'powerline)
+(powerline-default-theme)
+
 
 (require 'magit)
 (require 'auto-complete)
