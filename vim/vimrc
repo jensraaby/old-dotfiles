@@ -28,7 +28,6 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'rizzatti/dash.vim'
-Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'derekwyatt/vim-scala'
 
 " Go plugins - need to refactor this perhaps?

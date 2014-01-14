@@ -72,7 +72,7 @@ task :vim do
   #  Problematic python because of macvim formula:
   # https://github.com/mxcl/homebrew/issues/17908
   run %{brew install vim}
-  run %{brew install macvim --env-std --override-system-vim}
+  run %{brew install macvim}
   puts 
   puts "Recursively initialising git submodules"
   run %{git submodule update --init --recursive}
@@ -181,7 +181,7 @@ task :emacs do
   puts
   puts "Installing Emacs from homebrew"
   run %{brew install emacs --srgb --cocoa}
-  # install_files()
+  install_files(['emacs.d'])
 end
 
 private
