@@ -1,11 +1,17 @@
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 ; Set to reload the last session
 ; use --no-desktop to disable
 (desktop-save-mode 1)
 
+; Disable the really annoying beeps when you scroll too far...
+(setq visible-bell 1)
+
 ; Automatically wrap long lines
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
-
+;El-get is a bit like Vundle
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
 (unless (require 'el-get nil 'noerror)
