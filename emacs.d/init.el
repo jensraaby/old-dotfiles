@@ -28,13 +28,16 @@
 
 (setq my-packages
   (append '(color-theme tomorrow-theme solarized-theme)
-          '(powerline)
           '(markdown-mode auctex ag magit) 
-          '(auto-complete autopair)
+          '(auto-complete autopair evil )
           '(exec-path-from-shell python-mode)
       ))
 
 (el-get 'sync my-packages)
+
+; Make this evil
+(require 'evil)
+(evil-mode 1)
 
 ; We want the same PATH as in the shell
 (when (memq window-system '(mac ns))
@@ -56,11 +59,7 @@
 (require 'color-theme-tomorrow)
 (color-theme-tomorrow)
 
-; Make status bar nicer
-(require 'powerline)
-(powerline-default-theme)
-
-
+; Misc niceties
 (require 'magit)
 (require 'auto-complete)
 
