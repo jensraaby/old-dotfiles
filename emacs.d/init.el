@@ -28,9 +28,8 @@
 
 (setq my-packages
   (append '(color-theme tomorrow-theme solarized-theme)
-          '(powerline)
           '(markdown-mode auctex ag magit) 
-          '(auto-complete autopair)
+          '(auto-complete autopair evil)
           '(exec-path-from-shell python-mode)
       ))
 
@@ -51,16 +50,15 @@
 (setq ispell-dictionary "british")
 (setq ispell-list-command "--list")
 
-
 (require 'color-theme-solarized)
 (require 'color-theme-tomorrow)
-(color-theme-tomorrow)
+(color-theme-solarized-light)
 
-; Make status bar nicer
-(require 'powerline)
-(powerline-default-theme)
+; Make the editor vim like
+(require 'evil)
+(evil-mode 1)
 
-
+; A couple of niceties
 (require 'magit)
 (require 'auto-complete)
 
