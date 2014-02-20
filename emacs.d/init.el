@@ -29,7 +29,7 @@
 (setq my-packages
   (append '(color-theme tomorrow-theme solarized-theme)
           '(markdown-mode auctex ag magit) 
-          '(auto-complete autopair evil)
+          '(auto-complete autopair evil )
           '(exec-path-from-shell python-mode)
       ))
 
@@ -73,5 +73,5 @@
 (setq show-trailing-whitespace t)
 
 ; IDO is apparently essential - 'interactively do things'
-;(require 'ido)
-;(ido-mode t)
+(require 'ido)
+(ido-mode t)
