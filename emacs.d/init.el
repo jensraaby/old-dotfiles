@@ -1,9 +1,9 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+;(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 ; Set to reload the last session
 ; use --no-desktop to disable
-(desktop-save-mode 1)
+;(desktop-save-mode 1)
 
 ; Disable the really annoying beeps when you scroll too far...
 (setq visible-bell 1)
