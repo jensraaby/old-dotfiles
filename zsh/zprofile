@@ -18,7 +18,7 @@ fi
 #
 
 export EDITOR='vim'
-export VISUAL='mate'
+export VISUAL='vim'
 export PAGER='less'
 
 #
@@ -75,7 +75,9 @@ if [[ ! -d "$TMPPREFIX" ]]; then
   mkdir -p "$TMPPREFIX"
 fi
 
-
+# maybe this is supposed to be somewhere else 
+alias gfa='git fetch --all'
+alias gst='git status'
 
 # fixes the duplicates in the open with menu
 alias fixow='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
@@ -84,3 +86,7 @@ alias fixow='/System/Library/Frameworks/CoreServices.framework/Versions/A/Framew
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
 [ -d $HOME/anaconda/ ] && export PATH="$HOME/anaconda/bin:$PATH"
+
+# add rbenv if installed
+[ -d $HOME/.rbenv/ ] && export PATH="$HOME/.rbenv/shims:$PATH"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

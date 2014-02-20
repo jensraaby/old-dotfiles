@@ -5,7 +5,7 @@
 
 ; Set to reload the last session
 ; use --no-desktop to disable
-(desktop-save-mode 1)
+;(desktop-save-mode 1)
 
 ; Enable org mode
 (require 'org)
@@ -43,10 +43,6 @@
 
 (el-get 'sync my-packages)
 
-; Make this evil
-(require 'evil)
-(evil-mode 1)
-
 ; We want the same PATH as in the shell
 (when (memq window-system '(mac ns))
     (exec-path-from-shell-initialize))
@@ -62,12 +58,15 @@
 (setq ispell-dictionary "british")
 (setq ispell-list-command "--list")
 
-
 (require 'color-theme-solarized)
 (require 'color-theme-tomorrow)
-(color-theme-tomorrow)
+(color-theme-solarized-light)
 
-; Misc niceties
+; Make the editor vim like
+(require 'evil)
+(evil-mode 1)
+
+; A couple of niceties
 (require 'magit)
 (require 'auto-complete)
 
@@ -82,5 +81,5 @@
 (setq show-trailing-whitespace t)
 
 ; IDO is apparently essential - 'interactively do things'
-;(require 'ido)
-;(ido-mode t)
+(require 'ido)
+(ido-mode t)
