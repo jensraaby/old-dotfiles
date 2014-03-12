@@ -81,5 +81,11 @@
 (setq show-trailing-whitespace t)
 
 ; IDO is apparently essential - 'interactively do things'
-(require 'ido)
-(ido-mode t)
+(when (> emacs-major-version 21)
+  (require 'ido)
+  (ido-mode t)
+  (setq ido-enable-prefix nil
+        ido-enable-flex-matching t
+        ido-create-new-buffer 'always
+        ido-use-filename-at-point t
+        ido-max-prospects 10))
