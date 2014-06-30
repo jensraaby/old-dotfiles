@@ -25,11 +25,10 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'rizzatti/dash.vim'
-Bundle 'derekwyatt/vim-scala'
 Bundle 'jnwhiteh/vim-golang'
+Bundle 'wincent/Command-T'
 
 " Go plugins - need to refactor this perhaps?
 set rtp+=$GOROOT/misc/vim
