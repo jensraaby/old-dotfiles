@@ -71,7 +71,7 @@ task :vim do
   install_files(['vim', 'vim/vimrc'])
   #  Problematic python because of macvim formula:
   # https://github.com/mxcl/homebrew/issues/17908
-  run %{brew install vim}
+#  run %{brew install vim}
   run %{brew install macvim}
   puts 
   puts "Recursively initialising git submodules"
@@ -85,6 +85,20 @@ task :vim do
   puts 'Now you need to compile YouCompleteMe.'
   run %{cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer}
 
+end
+
+task :ycm do
+  puts
+  puts "Installing Clang for YCM C-languages"
+  run %{brew install cmake}
+  run %{brew install llvm --with-clang}
+  run %{mkdir ~/ycm_build}
+  run %{cd ycm_build}
+
+  puts "Creating makefile..."
+  run %{cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=/usr/local/opt/llvm ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp}
+  puts "Making c language support for YouCompleteMe"
+  run %{make ycm_support_libs}
 end
 
 desc "Powerline - the new beta version for Tmux,Vim,Zsh"
