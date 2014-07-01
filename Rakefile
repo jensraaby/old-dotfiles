@@ -68,7 +68,7 @@ task :vim do
   puts "Lovely vim with YouCompleteMe"
   puts 
   # TODO check if it's already installed
-  install_files(['vim', 'vim/vimrc'])
+  install_files(['vim', 'vim/vimrc', 'vim/gvimrc'])
   #  Problematic python because of macvim formula:
   # https://github.com/mxcl/homebrew/issues/17908
 #  run %{brew install vim}
