@@ -59,9 +59,19 @@ set smartindent " special indentation
 set autoindent
 set smarttab
 set laststatus=2 "always display statusline
-"set noshowmode " Hide the default mode text under the powerline
+"set noshowmode  Hide the default mode text under the powerline
 let python_space_errors = 1
 let python_highlight_space_errors = 1
+
+" Odd solarized things
+let g:solarized_termtrans = 1
+colorscheme solarized
+if has('gui_running')
+  set background=light
+else
+  set background=dark
+endif
+call togglebg#map("<F5>")
 
 " Setup airline
 let g:airline_powerline_fonts = 1
@@ -72,12 +82,22 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_check_on_open=1
 
+" Set fonts for MacVim
+if has("gui_macvim")
+  set guifont=Inconsolata\ for\ Powerline:h18
+endif
+
+" Yank to OS X clipboard
+noremap <leader>y "*y
+noremap <leader>yy "*y
+" Preserve indendation from system clipboard
+noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
 
 " Leader - from Haegin's config
 " Use , instead of \ as the leader key
-let mapleader = ","
+"let mapleader = ","
 " " Which means we should use \ instead of , for backwards f search
-noremap \ ,
+"noremap \ ,
 
 " ...
 filetype plugin indent on     " required!

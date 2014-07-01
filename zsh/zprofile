@@ -82,7 +82,7 @@ alias gst='git status'
 # fixes the duplicates in the open with menu
 alias fixow='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 
-# adds boxen if installed
+# add runtime tools if installed
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
 [ -d $HOME/anaconda/ ] && export PATH="$HOME/anaconda/bin:$PATH"
@@ -90,3 +90,10 @@ alias fixow='/System/Library/Frameworks/CoreServices.framework/Versions/A/Framew
 # add rbenv if installed
 [ -d $HOME/.rbenv/ ] && export PATH="$HOME/.rbenv/shims:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# Vimify my terminal!
+bindkey -v
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
+bindkey '^P' history-search-backward
+bindkey '^N' history-search-forward
