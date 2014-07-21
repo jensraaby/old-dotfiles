@@ -187,13 +187,13 @@ desc "Golang and syntax"
 task :go do
   puts
   puts "Installing golang from Brew"
-  run %{brew install golang"}
+  run %{brew install go}
   run %{mkdir -p $HOME/.vim/ftdetect}
   run %{mkdir -p $HOME/.vim/syntax}
   run %{mkdir -p $HOME/.vim/autoload/go}
-  run %{ln -s $GOROOT/misc/vim/ftdetect/*.vim $HOME/.vim/ftdetect/}
-  run %{ln -s $GOROOT/misc/vim/autoload/go/complete.vim $HOME/.vim/autoload/go}
-  run %{ln -s $GOROOT/misc/vim/syntax/*.vim $HOME/.vim/syntax}
+  run %{ln -fs $GOROOT/misc/vim/ftdetect/*.vim $HOME/.vim/ftdetect/}
+  run %{ln -fs $GOROOT/misc/vim/autoload/go/complete.vim $HOME/.vim/autoload/go}
+  run %{ln -fs $GOROOT/misc/vim/syntax/*.vim $HOME/.vim/syntax}
 end
 
 desc "Symlink slate"
