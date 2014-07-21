@@ -22,15 +22,15 @@ Bundle 'bling/vim-airline'
 Bundle 'scrooloose/syntastic'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'Valloric/YouCompleteMe'
-"Bundle 'Blackrush/vim-gocode'
-Bundle 'fatih/vim-go'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'rizzatti/dash.vim'
 Bundle 'jnwhiteh/vim-golang'
+" disable for now
+" Bundle 'Blackrush/vim-gocode'
+Bundle 'fatih/vim-go'
 Bundle 'wincent/Command-T'
-
 
 
 "" Whitespace, tabs etc
@@ -93,6 +93,9 @@ endif
 let mapleader = ","
  " Which means we should use \ instead of , for backwards f search
 noremap \ ,
+
+" Dash 
+noremap <leader>d :Dash<CR>
 
 " Yank to OS X clipboard
 noremap <leader>y "*y

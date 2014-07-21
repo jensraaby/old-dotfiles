@@ -191,9 +191,13 @@ task :go do
   run %{mkdir -p $HOME/.vim/ftdetect}
   run %{mkdir -p $HOME/.vim/syntax}
   run %{mkdir -p $HOME/.vim/autoload/go}
-  run %{ln -fs $GOROOT/misc/vim/ftdetect/*.vim $HOME/.vim/ftdetect/}
-  run %{ln -fs $GOROOT/misc/vim/autoload/go/complete.vim $HOME/.vim/autoload/go}
-  run %{ln -fs $GOROOT/misc/vim/syntax/*.vim $HOME/.vim/syntax}
+  run %{mkdir -p $HOME/.vim/indent/}
+  run %{mkdir -p $HOME/.vim/ftplugin/}
+  run %{ln -s $GOROOT/misc/vim/ftdetect/*.vim $HOME/.vim/ftdetect}
+  run %{ln -s $GOROOT/misc/vim/autoload/go/complete.vim $HOME/.vim/autoload/go}
+  run %{ln -s $GOROOT/misc/vim/syntax/*.vim $HOME/.vim/syntax}
+  run %{ln -s $GOROOT/misc/vim/indent/*.vim $HOME/.vim/indent}
+  run %{ln -s $GOROOT/misc/vim/ftplugin/*.vim $HOME/.vim/ftplugin}
 end
 
 desc "Symlink slate"
