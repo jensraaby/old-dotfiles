@@ -84,8 +84,10 @@ alias fixow='/System/Library/Frameworks/CoreServices.framework/Versions/A/Framew
 
 # add runtime tools if installed
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
-
 [ -d $HOME/anaconda/ ] && export PATH="$HOME/anaconda/bin:$PATH"
+
+# add Golang paths
+[ -d $HOME/src/go/ ] && export GOROOT=`go env GOROOT` && export GOPATH="$HOME/src/go" && export PATH="$PATH:$GOPATH/bin"
 
 # add rbenv if installed
 [ -d $HOME/.rbenv/ ] && export PATH="$HOME/.rbenv/shims:$PATH"
