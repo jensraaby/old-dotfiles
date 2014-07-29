@@ -21,7 +21,7 @@ end
 desc "Update the repostitory from github and update the submodules"
 task :update do
   puts "Updating repository"
-  run %{git pull}
+  run %{git pull --rebase}
   puts
   puts "Updating homebrew"
   run %{brew update}

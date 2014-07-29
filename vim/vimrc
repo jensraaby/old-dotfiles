@@ -31,7 +31,7 @@ Bundle 'jnwhiteh/vim-golang'
 " Bundle 'Blackrush/vim-gocode'
 Bundle 'fatih/vim-go'
 Bundle 'wincent/Command-T'
-
+Bundle 'chase/vim-ansible-yaml'
 
 "" Whitespace, tabs etc
 set nowrap
