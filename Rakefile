@@ -21,7 +21,7 @@ end
 desc "Update the repostitory from github and update the submodules"
 task :update do
   puts "Updating repository"
-  run %{git pull --rebase}
+  run %{git fetch --all && git pull --rebase}
   puts
   puts "Updating homebrew"
   run %{brew update}
@@ -30,6 +30,8 @@ task :update do
   run %{git submodule update --recursive}
   puts "Get the latest commits from master branch"
   run %{git submodule -q foreach git pull -q origin master}
+
+  run %{vim +BundleUpdate +qall}
 end
 
 desc "Install a few brew kegs"
@@ -85,21 +87,10 @@ task :vim do
   puts 'Now you need to compile YouCompleteMe.'
   run %{cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer}
 
+  puts 'Link default (C11) YCM config file'
+  install_files(['ycm_extra_conf.py'])
 end
 
-task :ycm do
-  puts
-  puts "Installing Clang for YCM C-languages"
-  run %{brew install cmake}
-  run %{brew install llvm --with-clang}
-  run %{mkdir ~/ycm_build}
-  run %{cd ycm_build}
-
-  puts "Creating makefile..."
-  run %{cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=/usr/local/opt/llvm ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp}
-  puts "Making c language support for YouCompleteMe"
-  run %{make ycm_support_libs}
-end
 
 desc "Powerline - the new beta version for Tmux,Vim,Zsh"
 task :powerline do
