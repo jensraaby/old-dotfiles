@@ -26,12 +26,17 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'rizzatti/dash.vim'
-Bundle 'jnwhiteh/vim-golang'
-" disable for now
-" Bundle 'Blackrush/vim-gocode'
+" Why so many plugins? Bundle 'jnwhiteh/vim-golang'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
+"Bundle 'Blackrush/vim-gocode'
 Bundle 'fatih/vim-go'
 Bundle 'wincent/Command-T'
 Bundle 'chase/vim-ansible-yaml'
+" All for snipmate
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle "honza/vim-snippets"
 
 "" Whitespace, tabs etc
 set nowrap
@@ -41,7 +46,7 @@ set nowrap
 :set expandtab
 :set backspace=indent,eol,start
 
-"" Search
+"" Search 
 set hlsearch " highlight search
 set incsearch " incremental search
 set ignorecase 
@@ -110,7 +115,7 @@ au Filetype go nnoremap <leader>r :GoRun %<CR>
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
 au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
-
+au Filetype go set tabstop=8|set shiftwidth=2|set noexpandtab
 
 " ...
 filetype plugin indent on     " required!
