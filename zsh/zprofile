@@ -75,13 +75,6 @@ if [[ ! -d "$TMPPREFIX" ]]; then
   mkdir -p "$TMPPREFIX"
 fi
 
-# maybe this is supposed to be somewhere else 
-alias gfa='git fetch --all'
-alias gst='git status'
-
-# fixes the duplicates in the open with menu
-alias fixow='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
-
 # add runtime tools if installed
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 [ -d $HOME/anaconda/ ] && export PATH="$HOME/anaconda/bin:$PATH"
@@ -105,3 +98,18 @@ function newmac() {
 #  NEWMAC = openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
   sudo ifconfig en0 ether `openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'`
 }
+
+
+# maybe aliases are supposed to be somewhere else 
+alias gfa='git fetch --all'
+alias gst='git status'
+
+# fixes the duplicates in the open with menu
+alias fixow='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
+
+# more aliases
+alias dotf='cd ~/.dotfiles/'
+alias ev='vim ~/.vimrc'
+alias ez='vim ~/.zprofile'
+alias sz='source ~/.zprofile'
+
