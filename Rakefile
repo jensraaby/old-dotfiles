@@ -34,6 +34,13 @@ task :update do
   run %{vim +BundleUpdate +qall}
 end
 
+desc "Customistations of Mac OS settings"
+task :osx do
+  puts "Delay in Spaces edge, for BetterSnapTool"
+  run %{defaults write com.apple.dock workspaces-edge-delay -float 2.0; killall Dock}
+end
+
+
 desc "Install a few brew kegs"
 task :start_brewing => [:install] do
   puts
