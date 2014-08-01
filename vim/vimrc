@@ -1,5 +1,4 @@
 set nocompatible               " be iMproved
-filetype on
 filetype off                   " required!
 filetype plugin indent off
 syntax on
@@ -10,33 +9,43 @@ set number
 set autoread
 
 " Vundle handles bundles
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " Jens's bundles:
-" replacing powerline with airline - should be less painful
-Bundle 'bling/vim-airline'
-Bundle 'scrooloose/syntastic'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/nerdtree'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rizzatti/dash.vim'
-" Why so many plugins? Bundle 'jnwhiteh/vim-golang'
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
-"Bundle 'Blackrush/vim-gocode'
-Bundle 'fatih/vim-go'
-Bundle 'wincent/Command-T'
-Bundle 'chase/vim-ansible-yaml'
-" All for snipmate
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
-Bundle "honza/vim-snippets"
+Plugin 'bling/vim-airline'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/nerdtree'
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'rizzatti/funcoo.vim'
+Plugin 'rizzatti/dash.vim'
+
+" Code completion
+Plugin 'Valloric/YouCompleteMe'
+" cd ~/.vim/bundle/YouCompleteMe
+" ./install.sh --clang-completer
+" Add this after YCM
+Plugin 'scrooloose/syntastic'
+Plugin 'SirVer/ultisnips'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'jcf/vim-latex'
+Plugin 'monnand/vim-markdown'
+
+" Requires running go get github.com/nsf/gocode
+"Plugin 'nsf/gocode' ", {'rtp': 'vim/'}
+"Plugin 'Blackrush/vim-gocode'
+Plugin 'fatih/vim-go'
+
+" No more plugins!
+call vundle#end()
+
+"
+" Settings
+"
 
 "" Whitespace, tabs etc
 set nowrap
@@ -45,6 +54,39 @@ set nowrap
 :set shiftwidth=2
 :set expandtab
 :set backspace=indent,eol,start
+
+" Leader - from Haegin's config
+" Use , instead of \ as the leader key
+let mapleader = ","
+let g:mapleader = ","
+ " Which means we should use \ instead of , for backwards f search
+noremap \ ,
+" Magic: type JK to escape insert mode 
+imap jk <ESC>l
+
+noremap <leader>d :Dash<CR>
+nnoremap <leader>ne :NERDTree<CR>
+
+" Settings for YouCompleteMe
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_min_num_of_chars_for_completion = 1
+" let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Omnifunc needed for completion?
+"set omnifunc=syntaxcomplete#Complete
+
+" Go
+"set rtp+=$GOROOT/misc/vim
+au Filetype go nnoremap <leader>r :GoRun %<CR>
+au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+"au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
+au Filetype go set tabstop=4 | set shiftwidth=4 | set sts=4 |set noexpandtab
+let g:gofmt_command = "goimports"
+let g:go_gmt_autofmt = 1
+
+
 
 "" Search 
 set hlsearch " highlight search
@@ -69,6 +111,7 @@ let python_highlight_space_errors = 1
 
 
 " Odd solarized things
+"
 let g:solarized_termtrans = 1
 colorscheme solarized
 if has('gui_running')
@@ -93,39 +136,56 @@ if has("gui_macvim")
 endif
 
 
-" Leader - from Haegin's config
-" Use , instead of \ as the leader key
-let mapleader = ","
- " Which means we should use \ instead of , for backwards f search
-noremap \ ,
-
-" Dash 
-noremap <leader>d :Dash<CR>
-
 " Yank to OS X clipboard
 noremap <leader>y "*y
 noremap <leader>yy "*y
 " Preserve indendation from system clipboard
 noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
 
+" UltiSnips - from github/fatih/dotfiles 
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res == 0
+        if pumvisible()
+            return "\<C-N>"
+        else
+            return "\<TAB>"
+        endif
+    endif
 
-" Go plugins - need to refactor this perhaps?
-set rtp+=$GOROOT/misc/vim
-au Filetype go nnoremap <leader>r :GoRun %<CR>
-au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
-au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
-au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
-au Filetype go set tabstop=8|set shiftwidth=2|set noexpandtab
+    return ""
+endfunction
+
+function! g:UltiSnips_Reverse()
+    call UltiSnips#JumpBackwards()
+    if g:ulti_jump_backwards_res == 0
+        return "\<C-P>"
+    endif
+
+    return ""
+endfunction
+
+
+if !exists("g:UltiSnipsJumpForwardTrigger")
+    let g:UltiSnipsJumpForwardTrigger = "<tab>"
+endif
+
+if !exists("g:UltiSnipsJumpBackwardTrigger")
+    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+endif
+
+au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+au BufEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
 
 " ...
 filetype plugin indent on     " required!
 "
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :PluginList          - list configured bundles
+" :PluginInstall(!)    - install(update) bundles
+" :PluginSearch(!) foo - search(or refresh cache first) for foo
+" :PluginClean(!)      - confirm(or auto-approve) removal of unused bundles
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" NOTE: comments after Plugin command are not allowed..
 

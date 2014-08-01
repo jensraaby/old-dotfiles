@@ -186,6 +186,7 @@ task :go do
   puts
   puts "Installing golang from Brew"
   run %{brew install go}
+  run %{mkdir -p $HOME/src/go}
   run %{mkdir -p $HOME/.vim/ftdetect}
   run %{mkdir -p $HOME/.vim/syntax}
   run %{mkdir -p $HOME/.vim/autoload/go}
@@ -196,6 +197,10 @@ task :go do
   run %{ln -s $GOROOT/misc/vim/syntax/*.vim $HOME/.vim/syntax}
   run %{ln -s $GOROOT/misc/vim/indent/*.vim $HOME/.vim/indent}
   run %{ln -s $GOROOT/misc/vim/ftplugin/*.vim $HOME/.vim/ftplugin}
+
+  puts "Install useful helpers"
+  puts " goimports:"
+  run %{ go get code.google.com/p/go.tools/cmd/goimports}
 end
 
 desc "Symlink slate"
