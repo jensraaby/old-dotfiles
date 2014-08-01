@@ -1,14 +1,5 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
-filetype plugin indent off
-syntax on
-set encoding=utf-8
-set showcmd
-set ruler
-set number
-set autoread
-
-" Vundle handles bundles
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 " let Vundle manage Vundle
@@ -17,32 +8,37 @@ Plugin 'gmarik/Vundle.vim'
 
 " Jens's bundles:
 Plugin 'bling/vim-airline'
+Plugin 'fatih/vim-go'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rizzatti/funcoo.vim'
 Plugin 'rizzatti/dash.vim'
-
-" Code completion
+Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
 " cd ~/.vim/bundle/YouCompleteMe
 " ./install.sh --clang-completer
-" Add this after YCM
 Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'jcf/vim-latex'
 Plugin 'monnand/vim-markdown'
-
-" Requires running go get github.com/nsf/gocode
-"Plugin 'nsf/gocode' ", {'rtp': 'vim/'}
-"Plugin 'Blackrush/vim-gocode'
-Plugin 'fatih/vim-go'
+Plugin 'tpope/vim-fugitive'
 
 " No more plugins!
-call vundle#end()
+call vundle#end()           " required
+filetype plugin indent on   " required
+       
+syntax on
+set encoding=utf-8
+set showcmd
+set ruler
+set number
+set autoread
 
+" Vundle handles bundles
 "
 " Settings
 "
@@ -64,30 +60,6 @@ noremap \ ,
 " Magic: type JK to escape insert mode 
 imap jk <ESC>l
 
-noremap <leader>d :Dash<CR>
-nnoremap <leader>ne :NERDTree<CR>
-
-" Settings for YouCompleteMe
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_min_num_of_chars_for_completion = 1
-" let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-" Omnifunc needed for completion?
-"set omnifunc=syntaxcomplete#Complete
-
-" Go
-"set rtp+=$GOROOT/misc/vim
-au Filetype go nnoremap <leader>r :GoRun %<CR>
-au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
-au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
-"au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
-au Filetype go set tabstop=4 | set shiftwidth=4 | set sts=4 |set noexpandtab
-let g:gofmt_command = "goimports"
-let g:go_gmt_autofmt = 1
-
-
-
 "" Search 
 set hlsearch " highlight search
 set incsearch " incremental search
@@ -108,6 +80,39 @@ set laststatus=2 "always display statusline
 "set noshowmode  Hide the default mode text under the powerline
 let python_space_errors = 1
 let python_highlight_space_errors = 1
+
+noremap <leader>d :Dash<CR>
+nnoremap <leader>ne :NERDTree<CR>
+
+" Settings for YouCompleteMe
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_min_num_of_chars_for_completion = 1
+" Following lines help resolve Ultisnip/YCM compatibility
+let g:ycm_key_list_select_completion = ['<C-n>','<Down>']
+let g:ycm_key_list_previous_completion = ['C-p>','<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+" let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Omnifunc needed for completion
+set omnifunc=syntaxcomplete#Complete
+
+" key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" Go
+"set rtp+=$GOROOT/misc/vim
+au Filetype go nnoremap <leader>r :GoRun %<CR>
+au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+"au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
+au Filetype go set tabstop=4 | set shiftwidth=4 | set sts=4 |set noexpandtab
+let g:gofmt_command = "goimports"
+let g:go_gmt_autofmt = 1
+let g:go_snippet_engine = "UltiSnips"
+
 
 
 " Odd solarized things
@@ -142,7 +147,7 @@ noremap <leader>yy "*y
 " Preserve indendation from system clipboard
 noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
 
-" UltiSnips - from github/fatih/dotfiles 
+" UltiSnips from fatih
 function! g:UltiSnips_Complete()
     call UltiSnips#ExpandSnippetOrJump()
     if g:ulti_expand_or_jump_res == 0
@@ -177,8 +182,9 @@ endif
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
 
+"================= end ultisnips
+
 " ...
-filetype plugin indent on     " required!
 "
 " Brief help
 " :PluginList          - list configured bundles
