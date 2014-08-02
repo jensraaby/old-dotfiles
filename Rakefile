@@ -31,7 +31,7 @@ task :update do
   puts "Get the latest commits from master branch"
   run %{git submodule -q foreach git pull -q origin master}
 
-  run %{vim +BundleUpdate +qall}
+  run %{vim +PluginUpdate +qall}
 end
 
 desc "Customistations of Mac OS settings"

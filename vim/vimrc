@@ -6,7 +6,8 @@ call vundle#begin()
 " required!
 Plugin 'gmarik/Vundle.vim'
 
-" Jens's bundles:
+" Jens's glorious selection of bundles:
+Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'fatih/vim-go'
 Plugin 'altercation/vim-colors-solarized'
@@ -25,7 +26,6 @@ Plugin 'honza/vim-snippets'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'jcf/vim-latex'
 Plugin 'monnand/vim-markdown'
-Plugin 'tpope/vim-fugitive'
 
 " No more plugins!
 call vundle#end()           " required
