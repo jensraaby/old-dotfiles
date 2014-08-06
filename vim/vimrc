@@ -217,6 +217,9 @@ augroup vimrcEx
 
 augroup END
 
+" Fast write and save
+noremap <leader>w :w!<CR>
+noremap <leader>q :q!<CR>
 " ...
 "
 " Brief help
