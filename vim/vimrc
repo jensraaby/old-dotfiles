@@ -9,7 +9,6 @@ Plugin 'gmarik/Vundle.vim'
 " Jens's glorious selection of bundles:
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rails'
-
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-sleuth'
@@ -29,12 +28,16 @@ Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
 " cd ~/.vim/bundle/YouCompleteMe
 " ./install.sh --clang-completer
-Plugin 'scrooloose/syntastic'
-Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'jcf/vim-latex'
 Plugin 'monnand/vim-markdown'
+Plugin 'rodjek/vim-puppet'
+Plugin 'majutsushi/tagbar'
+Plugin 'godlygeek/tabular'
+" need to run syntastic after the syntax plugins?
+Plugin 'scrooloose/syntastic'
+Plugin 'SirVer/ultisnips'
 
 
 " No more plugins!
@@ -107,9 +110,13 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " Go
 "set rtp+=$GOROOT/misc/vim
+au FileType go nmap <Leader>i <Plug>(go-info)
 au Filetype go nnoremap <leader>r :GoRun %<CR>
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 "au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
 au Filetype go set tabstop=4 | set shiftwidth=4 | set sts=4 |set noexpandtab
 let g:gofmt_command = "goimports"
@@ -139,6 +146,8 @@ let g:syntastic_warning_symbol='⚠'
 let g:syntastic_check_on_open=1
 
 " Set fonts for MacVim
+" My sight sucks, so I use a big font size.
+" On my retina MBP, I often use higher scaling so this helps.
 if has("gui_macvim")
   set guifont=Inconsolata\ for\ Powerline:h18
 endif
@@ -192,6 +201,8 @@ noremap <leader>d :Dash<CR>
 nnoremap <leader>ne :NERDTree<CR>
 
 """""""""""""" More key maps
+" TagBar
+nmap <leader>/ :TagbarToggle<CR>
 " Gary Bernhardt's hash rocket shortcut
 imap <c-l> <space>=><space>
 
