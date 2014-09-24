@@ -19,7 +19,9 @@ Plugin 'bling/vim-airline'
 Plugin 'fatih/vim-go'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
-Plugin 'git://git.wincent.com/command-t.git'
+" Swapping command t for ctrl p
+Plugin 'kien/ctrlp.vim'
+"Plugin 'git://git.wincent.com/command-t.git'
 " Activate easymotion with ,,w for words
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rizzatti/funcoo.vim'
@@ -32,6 +34,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'jcf/vim-latex'
 Plugin 'monnand/vim-markdown'
+Plugin 'mattn/emmet-vim'
 Plugin 'rodjek/vim-puppet'
 Plugin 'majutsushi/tagbar'
 Plugin 'godlygeek/tabular'
@@ -57,6 +60,9 @@ set autoread
 "" Whitespace, tabs etc
 set wrap
 set textwidth=79
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set laststatus=2
 set expandtab
 set backspace=indent,eol,start
@@ -77,6 +83,7 @@ set ignorecase
 set smartcase " capitals in searches make them case sensitive
 set showmatch " brackets
 
+
 "" Other useful stuff:
 set mouse=a " use mouse
 set foldlevel=9999 " Expand folds
@@ -90,6 +97,8 @@ set laststatus=2 "always display statusline
 let python_space_errors = 1
 let python_highlight_space_errors = 1
 set wildmode=longest,list
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
 " Settings for YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
@@ -141,10 +150,32 @@ call togglebg#map("<F5>")
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
 
+
+" CtrlP
+let g:ctrlp_custom_ignore = '\v\.(jpeg|jpg|JPG|png)$'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+
 " Syntastic
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_check_on_open=1
+
+" Spelling should be proper
+setlocal spell spelllang=en_gb
+set spell
+
 
 " Set fonts for MacVim
 " My sight sucks, so I use a big font size.
@@ -212,6 +243,12 @@ nmap <down> <Nop>
 nmap <left> <Nop>
 nmap <right> <Nop>
 
+" Fast write and save
+noremap <leader>w :w!<CR>
+noremap <leader>q :q!<CR>
+
+
+
 """""""""""""" Autocmds
 " From Gary Bernhardt again
 augroup vimrcEx
@@ -228,10 +265,6 @@ augroup vimrcEx
   autocmd! BufNewFile,BufRead *.md setlocal ft=
 
 augroup END
-
-" Fast write and save
-noremap <leader>w :w!<CR>
-noremap <leader>q :q!<CR>
 " ...
 "
 " Brief help
