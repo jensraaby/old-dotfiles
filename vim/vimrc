@@ -16,10 +16,9 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-endwise'
 
 Plugin 'bling/vim-airline'
-Plugin 'fatih/vim-go'
+Plugin 'majutsushi/tagbar'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
-Plugin 'git://git.wincent.com/command-t.git'
 " Activate easymotion with ,,w for words
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rizzatti/funcoo.vim'
@@ -33,11 +32,11 @@ Plugin 'chase/vim-ansible-yaml'
 Plugin 'jcf/vim-latex'
 Plugin 'monnand/vim-markdown'
 Plugin 'rodjek/vim-puppet'
-Plugin 'majutsushi/tagbar'
 Plugin 'godlygeek/tabular'
 " need to run syntastic after the syntax plugins?
 Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
+Plugin 'fatih/vim-go'
 
 
 " No more plugins!
