@@ -15,6 +15,7 @@ Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-endwise'
 
+Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
 Plugin 'altercation/vim-colors-solarized'
@@ -99,29 +100,30 @@ let g:ycm_key_list_previous_completion = ['C-p>','<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 " let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 
-" Omnifunc - maybe? needed for completion
-" set omnifunc=syntaxcomplete#Complete
-
 " key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
+" Java/eclim
+let g:EclimCompletionMethod = 'omnifunc'   
+au filetype java nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
+au filetype java nnoremap <silent> <buffer> <leader>ds :JavaDocSearch -x declarations<cr>
+au filetype java nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
+
+
 " Go
 "set rtp+=$GOROOT/misc/vim
+au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
-au Filetype go nnoremap <leader>r :GoRun %<CR>
-au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
-au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+au Filetype go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 "au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
 au Filetype go set tabstop=4 | set shiftwidth=4 | set sts=4 |set noexpandtab
-let g:gofmt_command = "goimports"
-let g:go_gmt_autofmt = 1
+let g:go_fmt_command = "goimports"
 let g:go_snippet_engine = "UltiSnips"
-
 
 
 " Odd solarized things
