@@ -1,99 +1,21 @@
-set nocompatible               " be iMproved
-filetype off                   " required!
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-" let Vundle manage Vundle
-" required!
-Plugin 'gmarik/Vundle.vim'
 
-" Jens's glorious selection of bundles:
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-sleuth'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-endwise'
-
-Plugin 'bling/vim-airline'
-Plugin 'fatih/vim-go'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/nerdtree'
-" Swapping command t for ctrl p
-Plugin 'kien/ctrlp.vim'
-"Plugin 'git://git.wincent.com/command-t.git'
-" Activate easymotion with ,,w for words
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'rizzatti/funcoo.vim'
-Plugin 'rizzatti/dash.vim'
-Plugin 'ervandew/supertab'
-Plugin 'Valloric/YouCompleteMe'
-" cd ~/.vim/bundle/YouCompleteMe
-" ./install.sh --clang-completer
-Plugin 'honza/vim-snippets'
-Plugin 'chase/vim-ansible-yaml'
-Plugin 'jcf/vim-latex'
-Plugin 'monnand/vim-markdown'
-Plugin 'mattn/emmet-vim'
-Plugin 'rodjek/vim-puppet'
-Plugin 'majutsushi/tagbar'
-Plugin 'godlygeek/tabular'
-" need to run syntastic after the syntax plugins?
-Plugin 'scrooloose/syntastic'
-Plugin 'SirVer/ultisnips'
-
-
-" No more plugins!
-call vundle#end()           " required
-filetype plugin indent on   " required
-
-"
-" Standard configuration things:
-"
-syntax on
-set encoding=utf-8
-set showcmd
-set ruler
-set number
-set autoread
-
-"" Whitespace, tabs etc
-set wrap
-set textwidth=79
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set laststatus=2
-set expandtab
-set backspace=indent,eol,start
-
-" Leader - from Haegin's config
 " Use , instead of \ as the leader key
 let mapleader = ","
 let g:mapleader = ","
-" Which means we should use \ instead of , for backwards f search
-noremap \ ,
+
 " Magic: type JK to escape insert mode 
 imap jk <ESC>l
 
 "" Search 
 set hlsearch " highlight search
-set incsearch " incremental search
 set ignorecase 
 set smartcase " capitals in searches make them case sensitive
 set showmatch " brackets
 
-
 "" Other useful stuff:
-set mouse=a " use mouse
-set foldlevel=9999 " Expand folds
-set history=500 " lines of history
-set number 
 set mat=2 " seconds of blinking when matching parentheses
 set smartindent " special indentation
 set autoindent
-set smarttab
-set laststatus=2 "always display statusline
 let python_space_errors = 1
 let python_highlight_space_errors = 1
 set wildmode=longest,list
@@ -107,11 +29,9 @@ let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_key_list_select_completion = ['<C-n>','<Down>']
 let g:ycm_key_list_previous_completion = ['C-p>','<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
+
 let g:EclimCompletionMethod = 'omnifunc'
 " let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
-
-" Omnifunc - maybe? needed for completion
-" set omnifunc=syntaxcomplete#Complete
 
 " key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -151,20 +71,6 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
 
 
-" CtrlP
-let g:ctrlp_custom_ignore = '\v\.(jpeg|jpg|JPG|png)$'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
 
 
 " Syntastic
@@ -174,7 +80,6 @@ let g:syntastic_check_on_open=1
 
 " Spelling should be proper
 setlocal spell spelllang=en_gb
-set spell
 
 
 " Set fonts for MacVim
@@ -238,41 +143,8 @@ nmap <leader>/ :TagbarToggle<CR>
 " Gary Bernhardt's hash rocket shortcut
 imap <c-l> <space>=><space>
 
-nmap <up> <Nop>
-nmap <down> <Nop>
-nmap <left> <Nop>
-nmap <right> <Nop>
-
 " Fast write and save
 noremap <leader>w :w!<CR>
 noremap <leader>q :q!<CR>
 
-
-
-"""""""""""""" Autocmds
-" From Gary Bernhardt again
-augroup vimrcEx
-  autocmd!
-  " this clears the group
-  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
-  autocmd FileType python set sw=4 sts=4 et
-
-  autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
-  autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
-  " Don't syntax highlight markdown because it's often wrong
-  autocmd! FileType mkd setlocal syn=off
-  " *.md is markdown
-  autocmd! BufNewFile,BufRead *.md setlocal ft=
-
-augroup END
-" ...
-"
-" Brief help
-" :PluginList          - list configured bundles
-" :PluginInstall(!)    - install(update) bundles
-" :PluginSearch(!) foo - search(or refresh cache first) for foo
-" :PluginClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Plugin command are not allowed..
 

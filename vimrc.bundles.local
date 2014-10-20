@@ -1,0 +1,23 @@
+
+
+Plugin 'bling/vim-airline'
+Plugin 'fatih/vim-go'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/nerdtree'
+Plugin 'rizzatti/funcoo.vim'
+Plugin 'rizzatti/dash.vim'
+Plugin 'ervandew/supertab'
+Plugin 'Valloric/YouCompleteMe'
+" cd ~/.vim/bundle/YouCompleteMe
+" ./install.sh --clang-completer
+Plugin 'honza/vim-snippets'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'jcf/vim-latex'
+Plugin 'monnand/vim-markdown'
+Plugin 'mattn/emmet-vim'
+Plugin 'rodjek/vim-puppet'
+Plugin 'majutsushi/tagbar'
+Plugin 'godlygeek/tabular'
+" need to run syntastic after the syntax plugins?
+Plugin 'SirVer/ultisnips'
+

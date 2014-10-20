@@ -100,16 +100,3 @@ function newmac() {
 }
 
 
-# maybe aliases are supposed to be somewhere else 
-alias gfa='git fetch --all'
-alias gst='git status'
-
-# fixes the duplicates in the open with menu
-alias fixow='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
-
-# more aliases
-alias dotf='cd ~/.dotfiles/'
-alias ev='vim ~/.vimrc'
-alias ez='vim ~/.zprofile'
-alias sz='source ~/.zprofile'
-

@@ -1,8 +1,1 @@
-
-To install:
-You need Rake and Ruby (doesn't matter which ruby)
-gem install rake
-
-git clone https://github.com/jensraaby/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles/
-rake install
+Use thoughbot's RCM to install and manage dotfiles.
