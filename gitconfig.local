@@ -1,4 +1,10 @@
 [user]
   name = Jens Raaby
   email = git@jensraaby.com
+;; Not a real email address!
 
+[github]
+  user = jensraaby
+
+[credential]
+  helper = osxkeychain
