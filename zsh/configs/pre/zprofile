@@ -57,8 +57,9 @@ path=(
 export LESS='-F -g -i -M -R -S -w -X -z-4'
 
 # Set the Less input preprocessor.
-if (( $+commands[lesspipe.sh] )); then
-  export LESSOPEN='| /usr/bin/env lesspipe.sh %s 2>&-'
+# Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
+if (( $#commands[(i)lesspipe(|.sh)] )); then
+  export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
 
 #
@@ -74,29 +75,3 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 if [[ ! -d "$TMPPREFIX" ]]; then
   mkdir -p "$TMPPREFIX"
 fi
-
-# add runtime tools if installed
-[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
-[ -d $HOME/anaconda/ ] && export PATH="$HOME/anaconda/bin:$PATH"
-
-# add Golang paths
-[ -d $HOME/src/go/ ] && export GOROOT=`go env GOROOT` && export GOPATH="$HOME/src/go" && export PATH="$PATH:$GOPATH/bin"
-
-# add rbenv if installed
-[ -d $HOME/.rbenv/ ] && export PATH="$HOME/.rbenv/shims:$PATH"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# Vimify my terminal!
-bindkey -v
-bindkey '^R' history-incremental-search-backward
-bindkey '^S' history-incremental-search-forward
-bindkey '^P' history-search-backward
-bindkey '^N' history-search-forward
-
-# change the WiFi MAC
-function newmac() {
-#  NEWMAC = openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
-  sudo ifconfig en0 ether `openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'`
-}
-
-
