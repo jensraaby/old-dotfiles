@@ -11,3 +11,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+export PATH="$HOME/.bin:$PATH"
+[ -d $HOME/anaconda/bin/ ] && export PATH="$HOME/anaconda/bin:$PATH"
+[ -d $HOME/go ] && export GOPATH="$HOME/go"
