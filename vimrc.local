@@ -1,9 +1,8 @@
-
 " Use , instead of \ as the leader key
 let mapleader = ","
 let g:mapleader = ","
 
-" Magic: type JK to escape insert mode 
+" Magic: type jk fast to escape insert mode 
 imap jk <ESC>l
 
 "" Search 
@@ -14,13 +13,6 @@ set showmatch " brackets
 
 "" Other useful stuff:
 set mat=2 " seconds of blinking when matching parentheses
-set smartindent " special indentation
-set autoindent
-let python_space_errors = 1
-let python_highlight_space_errors = 1
-set wildmode=longest,list
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
 " Settings for YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
@@ -29,9 +21,10 @@ let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_key_list_select_completion = ['<C-n>','<Down>']
 let g:ycm_key_list_previous_completion = ['C-p>','<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
-
-let g:EclimCompletionMethod = 'omnifunc'
 " let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
+
+" Eclim?
+let g:EclimCompletionMethod = 'omnifunc'
 
 " key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -41,8 +34,10 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " Go
 "set rtp+=$GOROOT/misc/vim
 au FileType go nmap <Leader>i <Plug>(go-info)
-au Filetype go nnoremap <leader>r :GoRun %<CR>
-au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+au Filetype go nnoremap <leader>r <Plug>(go-run)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>c <Plug>(go-coverage)
