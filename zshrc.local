@@ -13,6 +13,8 @@ fi
 # Customize to your needs...
 
 export PATH="$HOME/.bin:$PATH"
+
+# Only add paths if they exist - allows enabling by renaming 
 [ -d $HOME/anaconda/bin/ ] && export PATH="$HOME/anaconda/bin:$PATH"
 [ -d $HOME/go ] && export GOPATH="$HOME/go" && export PATH="$PATH:$GOPATH/bin"
 

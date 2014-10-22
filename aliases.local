@@ -6,7 +6,7 @@ alias fixow='/System/Library/Frameworks/CoreServices.framework/Versions/A/Framew
 
 # more aliases
 alias dotf='cd ~/Projects/jensraaby/dotfiles/'
-alias ev='vim ~/.vimrc'
-alias ez='vim ~/.zprofile'
-alias sz='source ~/.zprofile'
+alias ev='vim ~/.vimrc.local'
+alias ez='vim ~/.zshrc.local'
+alias sz='source ~/.zshrc'
 
