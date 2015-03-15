@@ -19,4 +19,13 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 # Following commands are guarded by existence checks  - allows disabling by renaming
 [ -d $HOME/go ] && export GOPATH="$HOME/go" && export PATH="$PATH:$GOPATH/bin"
+[ -d /usr/local/opt/go/libexec/bin ] && export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
+[ -f $HOME/.proxify ] && source ~/.proxify
+[ -f $HOME/.environment.local ] && source ~/.environment.local
+
+[ -d $HOME/.jenv/.bin ] && export PATH="$HOME/.jenv/bin:$PATH" && eval "$(jenv init -)"
+
+
+# Aliases which might be useful...
+alias jpp="pbpaste | python -m json.tool"
