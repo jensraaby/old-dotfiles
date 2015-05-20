@@ -14,7 +14,6 @@ fi
 
 export PATH="$HOME/.bin:$PATH"
 
-# PyEnv setup:
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 # Following commands are guarded by existence checks  - allows disabling by renaming
