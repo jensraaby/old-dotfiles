@@ -12,7 +12,7 @@ fi
 
 # Customize to your needs...
 
-export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/.bin:$HOME/bin:$PATH"
 
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
