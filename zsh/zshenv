@@ -1,0 +1,28 @@
+#
+# Defines environment variables.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Ensure that a non-login, non-interactive shell has a defined environment.
+if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprofile"
+fi
+
+[[ -z "$LANG" ]] && export LANG='en_GB.UTF-8'
+
+
+# Aliases
+alias gfa='git fetch --all --prune'
+alias gst='git status'
+alias ll='ls -l'
+alias la='ls -al'
+
+# When in doubt, explain
+export BROWSER=`which google-chrome-stable`
+function explain() {
+  query=$(local y=$@:s/\\/\\\\/; for i in `seq 1 ${#y}`; do [[ "${y[i]}" =~ '[a-zA-Z0-9/.:?&=]' ]] && echo -n ${y[i]} || printf %%%x \'${y[i]}; done)
+  ${BROWSER} "http://explainshell.com/explain?cmd=${query}"
+}
+

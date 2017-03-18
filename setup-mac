@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "Configuring ZSH  ..."
+
+[[ ! -d ~/.zprezto ]] && git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}" 2> /dev/null ; done
+for rcfile in zpreztorc zshenv zshrc inputrc zprofile ; do ln -sf ${DOTFILES_DIR}/zsh/${rcfile} ~/.${rcfile} ; done
+
