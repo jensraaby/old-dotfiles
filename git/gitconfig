@@ -1,0 +1,30 @@
+[user]
+  name = Jens Raaby
+  email = git@jensraaby.com
+;; Not a real email address!
+
+[color]
+  ui = true
+
+[core]
+  autocrlf = input
+  excludesfile = ~/.gitignore
+  pager = less -x2
+
+[push]
+  default = current
+
+[rebase]
+  autoStash = true
+
+[merge]
+  conflictstyle = diff3
+
+[http]
+  sslverify = true
+
+[github]
+  user = jensraaby
+
+[credential]
+  helper = osxkeychain

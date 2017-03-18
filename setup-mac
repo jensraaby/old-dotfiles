@@ -8,3 +8,8 @@ setopt EXTENDED_GLOB
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}" 2> /dev/null ; done
 for rcfile in zpreztorc zshenv zshrc inputrc zprofile ; do ln -sf ${DOTFILES_DIR}/zsh/${rcfile} ~/.${rcfile} ; done
 
+
+echo "Configuring development settings ..."
+echo "... git"
+cp -n ${DOTFILES_DIR}/git/gitconfig ~/.gitconfig
+cp -n ${DOTFILES_DIR}/git/gitignore ~/.gitignore
