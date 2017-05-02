@@ -1,7 +1,6 @@
 [user]
   name = Jens Raaby
-  email = git@jensraaby.com
-;; Not a real email address!
+  email = jensraaby@users.noreply.github.com
 
 [color]
   ui = true
