@@ -26,3 +26,5 @@ function explain() {
   ${BROWSER} "http://explainshell.com/explain?cmd=${query}"
 }
 
+[[ -f ~/.environment.local ]] && source ~/.environment.local
+
