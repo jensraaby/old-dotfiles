@@ -1,0 +1,152 @@
+filetype off
+
+
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
+
+" Use , instead of \ as the leader key
+let mapleader = ","
+let g:mapleader = ","
+
+" Magic: type jk fast to escape insert mode 
+imap jk <ESC>l
+
+"" Search 
+set hlsearch " highlight search
+set ignorecase 
+set smartcase " capitals in searches make them case sensitive
+set showmatch " brackets
+
+"" Other useful stuff:
+set mat=2 " seconds of blinking when matching parentheses
+
+" Settings for YouCompleteMe
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_min_num_of_chars_for_completion = 1
+" Following lines help resolve Ultisnip/YCM compatibility
+let g:ycm_key_list_select_completion = ['<C-n>','<Down>']
+let g:ycm_key_list_previous_completion = ['C-p>','<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+" let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
+
+" Eclim?
+let g:EclimCompletionMethod = 'omnifunc'
+
+" key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" Go
+"set rtp+=$GOROOT/misc/vim
+au FileType go nmap <Leader>i <Plug>(go-info)
+au Filetype go nnoremap <leader>r <Plug>(go-run)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+"au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
+au Filetype go set tabstop=4 | set shiftwidth=4 | set sts=4 |set noexpandtab
+let g:gofmt_command = "goimports"
+let g:go_gmt_autofmt = 1
+let g:go_snippet_engine = "UltiSnips"
+
+
+
+" Odd solarized things
+"
+let g:solarized_termtrans = 1
+colorscheme solarized
+if has('gui_running')
+  set background=light
+else
+  set background=dark
+endif
+call togglebg#map("<F5>")
+
+" Setup airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'solarized'
+
+
+
+
+" Syntastic
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_check_on_open=1
+
+" Spelling should be proper
+setlocal spell spelllang=en_gb
+
+
+" Set fonts for MacVim
+" My sight sucks, so I use a big font size.
+" On my retina MBP, I often use higher scaling so this helps.
+if has("gui_macvim")
+  set guifont=Inconsolata\ for\ Powerline:h18
+endif
+
+
+" UltiSnips from fatih
+function! g:UltiSnips_Complete()
+  call UltiSnips#ExpandSnippetOrJump()
+  if g:ulti_expand_or_jump_res == 0
+    if pumvisible()
+      return "\<C-N>"
+    else
+      return "\<TAB>"
+    endif
+  endif
+
+  return ""
+endfunction
+
+function! g:UltiSnips_Reverse()
+  call UltiSnips#JumpBackwards()
+  if g:ulti_jump_backwards_res == 0
+    return "\<C-P>"
+  endif
+
+  return ""
+endfunction
+
+
+if !exists("g:UltiSnipsJumpForwardTrigger")
+  let g:UltiSnipsJumpForwardTrigger = "<tab>"
+endif
+
+if !exists("g:UltiSnipsJumpBackwardTrigger")
+  let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+endif
+
+au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+au BufEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
+
+"================= end ultisnips
+
+"""" Key mappings using the leader (,)
+" Yank to OS X clipboard
+noremap <leader>y "*y
+noremap <leader>yy "*y
+" Preserve indendation from system clipboard
+noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+noremap <leader>d :Dash<CR>
+nnoremap <leader>ne :NERDTree<CR>
+
+"""""""""""""" More key maps
+" TagBar
+nmap <leader>/ :TagbarToggle<CR>
+" Gary Bernhardt's hash rocket shortcut
+imap <c-l> <space>=><space>
+
+" Fast write and save
+noremap <leader>w :w!<CR>
+noremap <leader>q :q!<CR>
+
+
