@@ -28,3 +28,7 @@ function explain() {
 
 [[ -f ~/.environment.local ]] && source ~/.environment.local
 
+# Support Go development
+export GOPATH=~/Development/golang
+path=($path $GOPATH/bin)
+
