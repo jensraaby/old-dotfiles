@@ -33,8 +33,10 @@ ln -sf ${DOTFILES_DIR}/vim/bundles ~/.vimrc.bundles
 
 
 echo "... neovim"
-[[ ! -f ~/.vim/autoload/plug.vim ]] && curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 2> /dev/null
-
+mkdir -p ~/.config/nvim
+[[ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]] && curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+ln -sf ${DOTFILES_DIR}/neovim/init.vim ~/.config/nvim/init.vim
 
 [[ ! -f /usr/local/bin/brew ]] && /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 (brew tap caskroom/cask > /dev/null) || (brew tap caskroom/cask && rehash)
@@ -42,5 +44,4 @@ echo "... neovim"
 (brew cask list spectacle > /dev/null) || (brew cask install spectacle)
 (brew cask list flux > /dev/null) || (brew cask install flux)
 (brew tap homebrew/bundle > /dev/null) || (brew tap Homebrew/bundle)
-brew bundle
 

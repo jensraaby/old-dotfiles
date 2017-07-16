@@ -1,0 +1,8 @@
+
+brew install python
+nvim +PlugInstall
+
+pushd ~/.config/nvim/bundle/YouCompleteMe
+	./install.py --clang-completer --gocode-completer --tern-completer
+popd
+
