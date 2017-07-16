@@ -10,6 +10,8 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFind' }
 Plug 'scrooloose/syntastic'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'derekwyatt/vim-scala'
+Plug 'ensime/ensime-vim'
 
 
 call plug#end()
@@ -70,6 +72,8 @@ map <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
+autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
   let l:file = expand('%')
@@ -81,4 +85,11 @@ function! s:build_go_files()
 endfunction
 
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
+" Ensime
+autocmd BufWritePost *.scala silent :EnTypeCheck
+nnoremap <localleader>t :EnTypeCheck<CR>
+au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
+
+
 

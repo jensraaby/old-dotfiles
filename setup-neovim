@@ -1,8 +1,12 @@
 
 brew install python
-nvim +PlugInstall
+pip install neovim
+pip install websocket-client sexpdata
+
+nvim +PlugInstall +UpdateRemotePlugins
 
 pushd ~/.config/nvim/bundle/YouCompleteMe
+	[[ ! -f plugin/youcompleteme.vim ]] && \
 	./install.py --clang-completer --gocode-completer --tern-completer
 popd
 
