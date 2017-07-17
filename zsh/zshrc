@@ -17,3 +17,5 @@ fi
 # Check for extra stuff to source
 [[ -s "$HOME/.zshrc.extra" ]] && source "$HOME/.zshrc.extra"
 
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
