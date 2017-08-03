@@ -3,7 +3,8 @@ tap "caskroom/fonts"
 tap "caskroom/versions"
 tap "homebrew/bundle"
 tap "homebrew/core"
-cask "java"
+cask "java" unless system "/usr/libexec/java_home --failfast"
+brew "coursier/formulas/coursier"
 brew "haskell-stack"
 brew "libyaml"
 brew "cmake"
@@ -46,4 +47,3 @@ mas "Soulver", id: 413965349
 mas "Tweetbot", id: 557168941
 mas "Xcode", id: 497799835
 cask "font-meslo-for-powerline"
-
