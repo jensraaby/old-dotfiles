@@ -28,7 +28,6 @@ mkdir -p ${GOPATH}
 
 echo "... scala"
 (brew list coursier > /dev/null) || (brew install coursier/formulas/coursier)
-(which scalafmt > /dev/null) || (coursier bootstrap --standalone com.geirsson:scalafmt-cli_2.12:1.1.0 -o /usr/local/bin/scalafmt -f --main org.scalafmt.cli.Cli)
 # Note: Should look in to Nailgun before installing it
 # (sudo coursier bootstrap --standalone com.geirsson:scalafmt-cli_2.12:1.1.0 -o /usr/local/bin/scalafmt_ng -f --main com.martiansoftware.nailgun.NGServer)
 

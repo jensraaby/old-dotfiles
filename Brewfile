@@ -5,6 +5,7 @@ tap "homebrew/bundle"
 tap "homebrew/core"
 cask "java" unless system "/usr/libexec/java_home --failfast"
 brew "coursier/formulas/coursier"
+brew "olafurpg/scalafmt/scalafmt", args: ["HEAD"]
 brew "haskell-stack"
 brew "libyaml"
 brew "cmake"
