@@ -12,6 +12,7 @@ Plug 'scrooloose/syntastic'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'derekwyatt/vim-scala'
 Plug 'ensime/ensime-vim'
+Plug 'elmcast/elm-vim'
 
 
 call plug#end()
