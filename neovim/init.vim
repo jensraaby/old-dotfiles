@@ -13,6 +13,7 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'derekwyatt/vim-scala'
 Plug 'ensime/ensime-vim'
 Plug 'elmcast/elm-vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 
 call plug#end()
