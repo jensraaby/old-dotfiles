@@ -50,3 +50,11 @@ ln -sf ${DOTFILES_DIR}/neovim/init.vim ~/.config/nvim/init.vim
 (brew cask list flux > /dev/null) || (brew cask install flux)
 (brew tap homebrew/bundle > /dev/null) || (brew tap Homebrew/bundle)
 
+echo "... nixos"
+mkdir -p ~/.nixpkgs
+[[ ! -f ~/.nixpkgs/config.nix ]] && ln -sf ${DOTFILES_DIR}/nix/config.nix ~/.nixpkgs/config.nix
+export NIXPKG_CONFIG=~/.nixpkgs/config.nix
+(command -v nix-env) || bash <(curl https://nixos.org/nix/install)
+source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+nix-channel --update
+nix-env -i zsh openssh
