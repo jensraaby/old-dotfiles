@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+brew install docker docker-compose docker-machine
+brew install xhyve docker-machine-driver-xhyve
+
+# See https://github.com/zchee/docker-machine-driver-xhyve#install
+sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+
+docker-machine create default --driver xhyve --xhyve-experimental-nfs-share
+
