@@ -9,6 +9,7 @@ brew "olafurpg/scalafmt/scalafmt", args: ["HEAD"]
 brew "haskell-stack"
 brew "libyaml"
 brew "cmake"
+brew "emacs", args: ["--with-cocoa"]
 brew "elm"
 brew "fzf"
 brew "python"
@@ -23,6 +24,7 @@ brew "sbt"
 brew "the_silver_searcher"
 brew "vim"
 brew "node"
+brew "yarn"
 brew "youtube-dl"
 cask "1password"
 cask "adobe-creative-cloud"
@@ -41,6 +43,7 @@ cask "silverlight"
 cask "spectacle"
 cask "spotify"
 cask "vlc"
+cask "visual-studio-code"
 cask "xquartz"
 mas "DaisyDisk", id: 411643860
 mas "Keynote", id: 409183694
