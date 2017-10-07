@@ -20,7 +20,7 @@ cp -n ${DOTFILES_DIR}/git/gitignore ~/.gitignore
 
 echo "... haskell"
 mkdir -p ~/.stack/
-ln -sf ${DOTFILES}/development/stack/config.yaml ~/.stack/config.yaml
+ln -sf ${DOTFILES_DIR}/development/stack/config.yaml ~/.stack/config.yaml
 
 echo "... go"
 export GOPATH=${HOME}/Development/golang
@@ -57,4 +57,4 @@ export NIXPKG_CONFIG=~/.nixpkgs/config.nix
 (command -v nix-env) || bash <(curl https://nixos.org/nix/install)
 source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 nix-channel --update
-nix-env -i zsh openssh
+nix-env -i zsh 
