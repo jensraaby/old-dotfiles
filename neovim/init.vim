@@ -18,6 +18,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 call plug#end()
 
+source $HOME/.config/nvim/config/general.vim
+
 " Standard config 
 filetype plugin indent on
 syntax on
@@ -28,16 +30,6 @@ let g:mapleader = ","
 
 " Magic: type jk fast to escape insert mode 
 imap jk <ESC>l
-
-" Search 
-set hlsearch " highlight search
-set ignorecase 
-set smartcase " capitals in searches make them case sensitive
-set showmatch " brackets
-set autowrite
-
-" Other useful stuff:
-set mat=2 " seconds of blinking when matching parentheses
 
 " Odd solarized things
 "

@@ -42,6 +42,7 @@ mkdir -p ~/.config/nvim
 [[ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]] && curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ln -sf ${DOTFILES_DIR}/neovim/init.vim ~/.config/nvim/init.vim
+ln -sf ${DOTFILES_DIR}/neovim/config ~/.config/nvim
 
 [[ ! -f /usr/local/bin/brew ]] && /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 (brew tap caskroom/cask > /dev/null) || (brew tap caskroom/cask && rehash)
