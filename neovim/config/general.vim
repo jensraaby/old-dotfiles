@@ -1,6 +1,7 @@
 " Indentation {{{
 set shiftwidth=2
 set softtabstop=2
+set tabstop=2
 set expandtab
 set smartindent
 set cindent
@@ -22,3 +23,6 @@ set autowrite
 
 " Other useful stuff:
 set mat=2 " seconds of blinking when matching parentheses
+
+set modeline
+

@@ -1,12 +1,15 @@
-
 brew install python
 pip install neovim
 pip install websocket-client sexpdata
+npm install -g neovim
 
-nvim +PlugInstall +UpdateRemotePlugins
+export DEIN_PATH=${HOME}/.local/share/dein
+mkdir -p $DEIN_PATH
+export DEIN_INSTALLER=`mktemp installer-XXX`
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ${DEIN_INSTALLER}
+sh ${DEIN_INSTALLER} ${DEIN_PATH}
+rm ${DEIN_INSTALLER}
 
-pushd ~/.config/nvim/bundle/YouCompleteMe
-	[[ ! -f plugin/youcompleteme.vim ]] && \
-	./install.py --clang-completer --gocode-completer --tern-completer
-popd
+nvim +qall 
+nvim +UpdateRemotePlugins +qall
 

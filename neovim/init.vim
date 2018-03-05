@@ -1,28 +1,36 @@
+if &compatible
+  set nocompatible
+endif
+set runtimepath+=~/.local/share/dein/repos/github.com/Shougo/dein.vim
+
 filetype off
 
-call plug#begin('~/.config/nvim/bundle')
+if dein#load_state('~/.local/share/dein')
+  call dein#begin('~/.local/share/dein')
+  call dein#add('~/.local/share/dein/repos/github.com/Shougo/dein.vim')
 
-" Plugins
-Plug 'altercation/vim-colors-solarized'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFind' }
-Plug 'scrooloose/syntastic'
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'derekwyatt/vim-scala'
-Plug 'ensime/ensime-vim'
-Plug 'elmcast/elm-vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  call dein#add('altercation/vim-colors-solarized')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('scrooloose/syntastic')
+  call dein#add('derekwyatt/vim-scala')
+  call dein#add('ensime/ensime-vim')
+  call dein#add('elmcast/elm-vim')
 
+  call dein#end()
+  call dein#save_state()
+endif
 
-call plug#end()
+if dein#check_install()
+  call dein#install()
+endif
 
 source $HOME/.config/nvim/config/general.vim
 
 " Standard config 
 filetype plugin indent on
 syntax on
+
 
 " Use , instead of \ as the leader key
 let mapleader = ","
@@ -53,37 +61,12 @@ let g:airline_theme = 'solarized'
 " Spelling should be proper
 setlocal spell spelllang=en_gb
 
+
 " Preserve indendation from system clipboard
 noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
+
 
 " Fast write and save
 noremap <leader>w :w!<CR>
 noremap <leader>q :q!<CR>
-
-" Vim-go
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
-autocmd FileType go nmap <leader>t  <Plug>(go-test)
-autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
-
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-
-" Ensime
-autocmd BufWritePost *.scala silent :EnTypeCheck
-nnoremap <localleader>t :EnTypeCheck<CR>
-au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
-
-
 
