@@ -16,18 +16,21 @@ if dein#load_state('~/.local/share/dein')
   call dein#add('fatih/molokai')
 
   " completion
+  call dein#add('Shougo/denite.nvim')
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
   call dein#add('Shougo/deoplete.nvim')
+  call dein#add('sirver/UltiSnips')
+  call dein#add('honza/vim-snippets')
 
   " syntax etc.
   call dein#add('scrooloose/syntastic')
   call dein#add('derekwyatt/vim-scala')
   call dein#add('ensime/ensime-vim')
   call dein#add('elmcast/elm-vim')
-  call dein#add('sheerun/vim-polyglot')  
+  call dein#add('sheerun/vim-polyglot')
 
   " golang
   call dein#add('fatih/vim-go')
@@ -45,7 +48,7 @@ if dein#check_install()
 endif
 
 
-" Standard config 
+" Standard config
 filetype plugin indent on
 syntax on
 
@@ -56,10 +59,12 @@ let mapleader = ","
 let g:mapleader = ","
 
 
-" Magic: type jk fast to escape insert mode 
+" Magic: type jk fast to escape insert mode
 imap jk <ESC>l
 
 
+let g:rehash256 = 1
+let g:molokai_original = 1
 colorscheme molokai
 if has('gui_running')
   set background=light
@@ -78,6 +83,11 @@ let g:deoplete#enable_at_startup = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
 
+
+" Snippets
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="s-<tab>"
 
 " Spelling should be proper
 setlocal spell spelllang=en_gb
