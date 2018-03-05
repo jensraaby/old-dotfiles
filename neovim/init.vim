@@ -9,13 +9,32 @@ if dein#load_state('~/.local/share/dein')
   call dein#begin('~/.local/share/dein')
   call dein#add('~/.local/share/dein/repos/github.com/Shougo/dein.vim')
 
+  " appearance
   call dein#add('altercation/vim-colors-solarized')
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('fatih/molokai')
+
+  " completion
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
+  call dein#add('Shougo/deoplete.nvim')
+
+  " syntax etc.
   call dein#add('scrooloose/syntastic')
   call dein#add('derekwyatt/vim-scala')
   call dein#add('ensime/ensime-vim')
   call dein#add('elmcast/elm-vim')
+  call dein#add('sheerun/vim-polyglot')  
+
+  " golang
+  call dein#add('fatih/vim-go')
+  call dein#add('zchee/deoplete-go', {'build': 'make'})
+
+  " formatting
+  call dein#add('sbdchd/neoformat')
 
   call dein#end()
   call dein#save_state()
@@ -25,32 +44,34 @@ if dein#check_install()
   call dein#install()
 endif
 
-source $HOME/.config/nvim/config/general.vim
 
 " Standard config 
 filetype plugin indent on
 syntax on
 
+source $HOME/.config/nvim/config/general.vim
 
 " Use , instead of \ as the leader key
 let mapleader = ","
 let g:mapleader = ","
 
+
 " Magic: type jk fast to escape insert mode 
 imap jk <ESC>l
 
-" Odd solarized things
-"
-let g:solarized_termtrans = 1
-let g:solarized_termcolors=256
 
-colorscheme solarized
+colorscheme molokai
 if has('gui_running')
   set background=light
 else
   set background=dark
 endif
 call togglebg#map("<F5>")
+
+
+" Deoplete
+" https://github.com/Shougo/deoplete.nvim
+let g:deoplete#enable_at_startup = 1
 
 
 " Setup airline
@@ -70,3 +91,5 @@ noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
 noremap <leader>w :w!<CR>
 noremap <leader>q :q!<CR>
 
+
+source $HOME/.config/nvim/config/formatters.vim
