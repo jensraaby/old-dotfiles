@@ -1,6 +1,6 @@
 brew install python
-pip install neovim
-pip install websocket-client sexpdata
+pip3 install neovim websocket-client sexpdata
+pip2 install python2-neovim websocket-client sexpdata
 npm install -g neovim
 
 export DEIN_PATH=${HOME}/.local/share/dein
