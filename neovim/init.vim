@@ -9,11 +9,15 @@ if dein#load_state('~/.local/share/dein')
   call dein#begin('~/.local/share/dein')
   call dein#add('~/.local/share/dein/repos/github.com/Shougo/dein.vim')
 
+  " Boilerplate
+  call dein#add('tpope/vim-sensible')
+
   " appearance
   call dein#add('altercation/vim-colors-solarized')
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
   call dein#add('fatih/molokai')
+  
 
   " completion
   call dein#add('Shougo/denite.nvim')
@@ -21,10 +25,14 @@ if dein#load_state('~/.local/share/dein')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
-  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'})
   call dein#add('sirver/UltiSnips')
   call dein#add('honza/vim-snippets')
 
+  " tpope
+  call dein#add('tpope/vim-surround')
+  call dein#add('tpope/vim-commentary')
+  
   " syntax etc.
   call dein#add('scrooloose/syntastic')
   call dein#add('derekwyatt/vim-scala')
@@ -103,3 +111,4 @@ noremap <leader>q :q!<CR>
 
 
 source $HOME/.config/nvim/config/formatters.vim
+source $HOME/.config/nvim/config/go.vim
