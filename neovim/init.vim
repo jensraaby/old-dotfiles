@@ -110,5 +110,13 @@ noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
 noremap <leader>w :w!<CR>
 noremap <leader>q :q!<CR>
 
+" Split/navigate panes
+noremap <leader>ws :split<CR>
+noremap <leader>wv :vsplit<CR>
+noremap <leader>wc <C-W>q
+
 source $HOME/.config/nvim/config/formatters.vim
 source $HOME/.config/nvim/config/go.vim
+
+
+
