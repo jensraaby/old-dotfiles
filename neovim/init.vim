@@ -17,7 +17,6 @@ if dein#load_state('~/.local/share/dein')
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
   call dein#add('fatih/molokai')
-  
 
   " completion
   call dein#add('Shougo/denite.nvim')
@@ -32,6 +31,7 @@ if dein#load_state('~/.local/share/dein')
   " tpope
   call dein#add('tpope/vim-surround')
   call dein#add('tpope/vim-commentary')
+  call dein#add('tpope/vim-fugitive')
   
   " syntax etc.
   call dein#add('scrooloose/syntastic')
@@ -39,6 +39,7 @@ if dein#load_state('~/.local/share/dein')
   call dein#add('ensime/ensime-vim')
   call dein#add('elmcast/elm-vim')
   call dein#add('sheerun/vim-polyglot')
+  call dein#add('zchee/deoplete-jedi')
 
   " golang
   call dein#add('fatih/vim-go')
@@ -93,9 +94,9 @@ let g:airline_theme = 'solarized'
 
 
 " Snippets
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="s-<tab>"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="s-<tab>"
 
 " Spelling should be proper
 setlocal spell spelllang=en_gb
@@ -108,7 +109,6 @@ noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
 " Fast write and save
 noremap <leader>w :w!<CR>
 noremap <leader>q :q!<CR>
-
 
 source $HOME/.config/nvim/config/formatters.vim
 source $HOME/.config/nvim/config/go.vim
