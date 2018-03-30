@@ -18,6 +18,10 @@ if dein#load_state('~/.local/share/dein')
   call dein#add('vim-airline/vim-airline-themes')
   call dein#add('fatih/molokai')
 
+  " fzf
+  call dein#add('junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' })
+  call dein#add('junegunn/fzf.vim')
+
   " completion
   call dein#add('Shougo/denite.nvim')
   if !has('nvim')
@@ -64,15 +68,6 @@ syntax on
 
 source $HOME/.config/nvim/config/general.vim
 
-" Use , instead of \ as the leader key
-let mapleader = ","
-let g:mapleader = ","
-
-
-" Magic: type jk fast to escape insert mode
-imap jk <ESC>l
-
-
 let g:rehash256 = 1
 let g:molokai_original = 1
 colorscheme molokai
@@ -95,29 +90,11 @@ let g:airline_theme = 'solarized'
 
 
 " Snippets
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="s-<tab>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="s-<tab>"
 
-" Spelling should be proper
-setlocal spell spelllang=en_gb
-
-
-" Preserve indendation from system clipboard
-noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
-
-
-" Fast write and save
-noremap <leader>w :w!<CR>
-noremap <leader>q :q!<CR>
-
-" Split/navigate panes
-noremap <leader>ws :split<CR>
-noremap <leader>wv :vsplit<CR>
-noremap <leader>wc <C-W>q
 
 source $HOME/.config/nvim/config/formatters.vim
 source $HOME/.config/nvim/config/go.vim
-
-
 
