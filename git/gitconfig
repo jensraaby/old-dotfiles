@@ -27,3 +27,7 @@
 
 [credential]
   helper = osxkeychain
+
+[alias]
+  co = checkout
+  br = branch
