@@ -27,9 +27,10 @@ export GOPATH=${HOME}/Development/golang
 mkdir -p ${GOPATH}
 
 echo "... scala"
-(brew list coursier > /dev/null) || (brew install coursier/formulas/coursier)
-# Note: Should look in to Nailgun before installing it
-# (sudo coursier bootstrap --standalone com.geirsson:scalafmt-cli_2.12:1.1.0 -o /usr/local/bin/scalafmt_ng -f --main com.martiansoftware.nailgun.NGServer)
+(brew list coursier > /dev/null) || (brew install --HEAD coursier/formulas/coursier)
+[[ ! -f /usr/local/bin/scalafmt ]] && coursier bootstrap com.geirsson:scalafmt-cli_2.12:1.4.0 \
+  -r bintray:scalameta/maven \
+  -o /usr/local/bin/scalafmt --standalone --main org.scalafmt.cli.Cli
 
 echo "... vim"
 [[ ! -f ~/.vim/autoload/plug.vim ]] && curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 2> /dev/null
@@ -49,11 +50,11 @@ ln -sf ${DOTFILES_DIR}/neovim/config ~/.config/nvim
 (brew cask list flux > /dev/null) || (brew cask install flux)
 (brew tap homebrew/bundle > /dev/null) || (brew tap Homebrew/bundle)
 
-echo "... nixos"
-mkdir -p ~/.nixpkgs
-[[ ! -f ~/.nixpkgs/config.nix ]] && ln -sf ${DOTFILES_DIR}/nix/config.nix ~/.nixpkgs/config.nix
-export NIXPKG_CONFIG=~/.nixpkgs/config.nix
-(command -v nix-env) || bash <(curl https://nixos.org/nix/install)
-source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-nix-channel --update
-nix-env -i zsh 
+# echo "... nixos"
+# mkdir -p ~/.nixpkgs
+# [[ ! -f ~/.nixpkgs/config.nix ]] && ln -sf ${DOTFILES_DIR}/nix/config.nix ~/.nixpkgs/config.nix
+# export NIXPKG_CONFIG=~/.nixpkgs/config.nix
+# (command -v nix-env) || bash <(curl https://nixos.org/nix/install)
+# source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+# nix-channel --update
+# nix-env -i zsh 
