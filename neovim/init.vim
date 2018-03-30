@@ -103,7 +103,6 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " Deoplete hooks in to the tab key; SuperTab helps me use Tab everywhere
 let g:SuperTabDefaultCompletionType = "context"
 
-
 source $HOME/.config/nvim/config/formatters.vim
 source $HOME/.config/nvim/config/go.vim
 

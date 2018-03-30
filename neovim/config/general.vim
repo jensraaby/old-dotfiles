@@ -40,9 +40,14 @@ noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
 " Fast write and save
 noremap <leader>w :w!<CR>
 noremap <leader>q :q!<CR>
+noremap <leader>qq :qall<CR>
 
 " Window Split
 noremap <leader>ws :split<CR>
 noremap <leader>wv :vsplit<CR>
 " Window close
 noremap <leader>wc <C-W>q
+
+" Files
+nnoremap <leader>f :Denite file<CR>
+nnoremap <leader>bb :Denite buffer<CR>
