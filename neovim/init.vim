@@ -18,12 +18,13 @@ if dein#load_state('~/.local/share/dein')
   call dein#add('vim-airline/vim-airline-themes')
   call dein#add('fatih/molokai')
 
-  " fzf
+  " " fzf
   call dein#add('junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' })
   call dein#add('junegunn/fzf.vim')
 
   " completion
   call dein#add('Shougo/denite.nvim')
+  call dein#add('ervandew/supertab')
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
@@ -49,6 +50,12 @@ if dein#load_state('~/.local/share/dein')
   " golang
   call dein#add('fatih/vim-go')
   call dein#add('zchee/deoplete-go', {'build': 'make'})
+
+  " javascript
+  " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
+  " call dein#add('ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx']})
+  " call dein#add('carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx']})
+
 
   " formatting
   call dein#add('sbdchd/neoformat')
@@ -79,20 +86,22 @@ endif
 call togglebg#map("<F5>")
 
 
-" Deoplete
-" https://github.com/Shougo/deoplete.nvim
-let g:deoplete#enable_at_startup = 1
-
 
 " Setup airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
 
 
-" Snippets
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="s-<tab>"
+" Completion config
+let g:deoplete#enable_at_startup = 1
+" UltiSnips Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe
+let g:UltiSnipsExpandTrigger="<c-j>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="s-<tab>"
+
+" Deoplete hooks in to the tab key; SuperTab helps me use Tab everywhere
+let g:SuperTabDefaultCompletionType = "context"
 
 
 source $HOME/.config/nvim/config/formatters.vim
