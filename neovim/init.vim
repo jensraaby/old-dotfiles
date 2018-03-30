@@ -32,6 +32,7 @@ if dein#load_state('~/.local/share/dein')
   call dein#add('tpope/vim-surround')
   call dein#add('tpope/vim-commentary')
   call dein#add('tpope/vim-fugitive')
+  call dein#add('tpope/vim-rhubarb')
   
   " syntax etc.
   call dein#add('scrooloose/syntastic')
