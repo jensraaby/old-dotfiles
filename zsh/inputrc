@@ -1,4 +1,0 @@
-# vi editing-mode breaks rbreadline by the looks of it.  Use INPUTRC to change it in environment
-set editing-mode vi
-set blink-matching-paren on
-
