@@ -6,6 +6,7 @@ tap "homebrew/core"
 tap 'paulp/extras'
 
 brew "haskell-stack"
+brew "go"
 brew "sbt"
 
 brew "fzf"
@@ -13,6 +14,7 @@ brew "jq"
 brew "gource"
 brew "ffmpeg"
 brew "gperftools"
+brew "kubectx"
 
 brew "python"
 brew "python2"
@@ -21,6 +23,7 @@ brew "pipenv"
 brew "curl"
 brew "coreutils"
 brew "tree"
+brew "vim"
 
 brew "git"
 brew "subversion"
@@ -28,16 +31,15 @@ brew "subversion"
 brew "maven"
 brew "maven@3.2"
 
+brew "node"
+brew "yarn"
+
 brew "gnupg"
 cask "keybase"
 brew "pinentry-mac"
 
-brew "go"
 brew "mas"
 brew "the_silver_searcher"
-brew "vim"
-brew "node"
-brew "yarn"
 brew "youtube-dl"
 brew "awscli"
 cask "alfred"

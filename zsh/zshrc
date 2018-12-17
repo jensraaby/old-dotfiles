@@ -9,6 +9,7 @@ zplug "plugins/vi-mode", from:oh-my-zsh, as:plugin
 zplug "modules/completion", from:prezto, as:plugin
 zplug "modules/history", from:prezto, as:plugin
 
+
 zplug "plugins/git", from:oh-my-zsh, as:plugin
 zplug "plugins/git-extras", from:oh-my-zsh, as:plugin
 
@@ -20,6 +21,9 @@ zstyle ':omz:plugins:ssh-agent' identities ida_rsa id_ed25519
 zplug "plugins/golang", from:oh-my-zsh, as:plugin
 zplug "docker/cli", use:contrib/completion/zsh
 zplug "docker/compose", use:contrib/completion/zsh
+
+zplug "plugins/kubectl", from:oh-my-zsh, as:plugin
+zplug "plugins/kube-ps1", from:oh-my-zsh, as:plugin
 
 zplug "djui/alias-tips", as:plugin
 
