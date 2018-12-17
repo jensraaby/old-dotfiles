@@ -12,8 +12,35 @@ zplug "modules/history", from:prezto, as:plugin
 zplug "plugins/git", from:oh-my-zsh, as:plugin
 zplug "plugins/git-extras", from:oh-my-zsh, as:plugin
 
+zplug "plugins/ssh-agent", from:oh-my-zsh, as:plugin
+
+zstyle ':omz:plugins:ssh-agent' agent-forwarding on
+zstyle ':omz:plugins:ssh-agent' identities ida_rsa id_ed25519
+
+zplug "plugins/golang", from:oh-my-zsh, as:plugin
+zplug "docker/cli", use:contrib/completion/zsh
+zplug "docker/compose", use:contrib/completion/zsh
+
+zplug "djui/alias-tips", as:plugin
+
+#zplug 'dracula/zsh', as:theme
+zplug "themes/candy", from:oh-my-zsh
+
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
 zplug load
 
 export EDITOR='vim'
 export VISUAL="${EDITOR}"
 [[ ! $TERM = screen-256color ]] && export TERM='xterm-256color'
+
+[[ -s "$HOME/.zshrc.extra" ]] && source "$HOME/.zshrc.extra"
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
