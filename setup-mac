@@ -12,6 +12,11 @@ for rcfile in zshrc zshenv ; do ln -sf ${DOTFILES_DIR}/zsh/${rcfile} ~/.${rcfile
 
 
 echo "Configuring development settings ..."
+
+echo "... gpg"
+[[ ! -d ~/.gnupg ]] && mkdir ~/.gnupg
+ln -sf ${DOTFILES_DIR}/gnupg/gpg-agent.conf ~/.gnupg/gpg-agent.conf
+
 echo "... git"
 ln -sf ${DOTFILES_DIR}/git/gitconfig ~/.gitconfig
 ln -sf ${DOTFILES_DIR}/git/gitignore ~/.gitignore

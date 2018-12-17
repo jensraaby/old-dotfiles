@@ -1,6 +1,7 @@
 [user]
   name = Jens Raaby
   email = jensraaby@users.noreply.github.com
+  signingkey = A99F9FE85A2FE7B6
 
 [color]
   ui = true
@@ -9,6 +10,9 @@
   autocrlf = input
   excludesfile = ~/.gitignore
   pager = less -x2
+
+[commit]
+  gpgsign = true
 
 [push]
   default = current
