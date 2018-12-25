@@ -1,23 +1,25 @@
-tap "caskroom/cask"
-tap "caskroom/fonts"
-tap "caskroom/versions"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
 tap "homebrew/bundle"
 tap "homebrew/core"
-tap 'paulp/extras'
+
+tap "paulp/extras"
+brew "paulp/extras/sbtx", args: ["HEAD"]
 
 brew "haskell-stack"
 brew "go"
-brew "sbt"
+cask "java8"
 
 brew "fzf"
 brew "jq"
 brew "gource"
-brew "ffmpeg"
 brew "gperftools"
+
 brew "kubectx"
 
 brew "python"
-brew "python2"
+brew "python@2"
 brew "pipenv"
 
 brew "curl"
@@ -37,21 +39,27 @@ brew "yarn"
 brew "gnupg"
 cask "keybase"
 brew "pinentry-mac"
+cask "keepassxc"
 
+brew "awscli"
+cask "google-cloud-sdk"
+
+brew "ffmpeg"
 brew "mas"
 brew "the_silver_searcher"
 brew "youtube-dl"
-brew "awscli"
 cask "alfred"
-cask "google-cloud-sdk"
 cask "docker"
 cask "iterm2"
 cask "spectacle"
 cask "vlc"
 cask "visual-studio-code"
 cask "font-meslo-for-powerline"
+cask "dropbox"
 mas "DaisyDisk", id: 411643860
 mas "Keynote", id: 409183694
+mas "iMovie", id: 408981434
+mas "GarageBand", id: 682658836
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Pixelmator", id: 407963104
