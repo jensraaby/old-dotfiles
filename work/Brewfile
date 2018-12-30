@@ -29,6 +29,7 @@ brew "vim"
 
 brew "git"
 brew "subversion"
+brew "hub"
 
 brew "maven"
 brew "maven@3.2"
