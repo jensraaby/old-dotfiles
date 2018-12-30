@@ -8,7 +8,7 @@ zplug "plugins/vi-mode", from:oh-my-zsh, as:plugin
 
 zplug "modules/completion", from:prezto, as:plugin
 zplug "modules/history", from:prezto, as:plugin
-
+zplug "zsh-users/zsh-history-substring-search"
 
 zplug "plugins/git", from:oh-my-zsh, as:plugin
 zplug "plugins/git-extras", from:oh-my-zsh, as:plugin
@@ -45,6 +45,17 @@ export EDITOR='vim'
 export VISUAL="${EDITOR}"
 [[ ! $TERM = screen-256color ]] && export TERM='xterm-256color'
 
-[[ -s "$HOME/.zshrc.extra" ]] && source "$HOME/.zshrc.extra"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+##############################################################
+# Dev tooling
+eval "$(hub alias -s)"
+export GITHUB_USERNAME="jensraaby"
+
+export GOPATH=~/dev/golang
+path=($path $GOPATH/bin)
+
+[[ -s "$HOME/.zshrc.extra" ]] && source "$HOME/.zshrc.extra"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

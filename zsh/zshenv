@@ -9,4 +9,3 @@ alias gfa='git fetch --all --prune'
 alias gst='git status'
 alias glt="git for-each-ref --sort='-*authordate' --format='%(*authordate) %(refname:short)' 'refs/tags/'"
 
-
