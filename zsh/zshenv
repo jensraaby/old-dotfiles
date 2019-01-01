@@ -2,8 +2,8 @@
 
 [[ -z "$LANG" ]] && export LANG='en_GB.UTF-8'
 
-alias ll='ls -l'
-alias la='ls -al'
+alias ll='ls -lh'
+alias la='ls -alh'
 
 alias gfa='git fetch --all --prune'
 alias gst='git status'

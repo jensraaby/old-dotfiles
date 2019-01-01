@@ -3,13 +3,18 @@ source ~/.zplug/init.zsh
 zstyle ':prezto:*:*' case-sensitive 'no'
 zstyle ':prezto:*:*' color 'yes'
 zplug "modules/environment", from:prezto, as:plugin
-
-zplug "plugins/vi-mode", from:oh-my-zsh, as:plugin
-
 zplug "modules/completion", from:prezto, as:plugin
 zplug "modules/history", from:prezto, as:plugin
-zplug "zsh-users/zsh-history-substring-search"
+zplug "modules/history-substring-search", from:prezto, as:plugin
+zplug "modules/autosuggestions", from:prezto, as:plugin
+zplug "modules/homebrew", from:prezto, as:plugin
 
+#zplug "modules/gnu-utility", from:prezto, as:plugin
+#zstyle ':prezto:module:gnu-utility' prefix 'g'
+
+zplug "zsh-users/zsh-history-substring-search", as:plugin
+
+zplug "plugins/vi-mode", from:oh-my-zsh, as:plugin
 zplug "plugins/git", from:oh-my-zsh, as:plugin
 zplug "plugins/git-extras", from:oh-my-zsh, as:plugin
 
@@ -25,6 +30,7 @@ zplug "docker/compose", use:contrib/completion/zsh
 zplug "plugins/kubectl", from:oh-my-zsh, as:plugin
 zplug "plugins/kube-ps1", from:oh-my-zsh, as:plugin
 
+zplug "tysonwolker/iterm-tab-colors"
 zplug "djui/alias-tips", as:plugin
 
 #zplug 'dracula/zsh', as:theme
