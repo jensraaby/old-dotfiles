@@ -4,6 +4,9 @@ tap "homebrew/cask-versions"
 tap "homebrew/bundle"
 tap "homebrew/core"
 
+tap "cloudflare/cloudflare"
+brew "cloudflare/cloudflare/cloudflared"
+
 tap "paulp/extras"
 brew "paulp/extras/sbtx", args: ["HEAD"]
 
@@ -44,14 +47,19 @@ cask "keepassxc"
 
 brew "awscli"
 cask "google-cloud-sdk"
+brew "terraform"
 
+brew "graphviz"
 brew "ffmpeg"
 brew "mas"
 brew "the_silver_searcher"
 brew "youtube-dl"
+brew "watch"
+
 cask "alfred"
 cask "docker"
 cask "iterm2"
+cask "nvalt"
 cask "spectacle"
 cask "vlc"
 cask "visual-studio-code"
