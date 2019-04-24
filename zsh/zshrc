@@ -5,6 +5,7 @@ zstyle ':prezto:*:*' color 'yes'
 zplug "modules/environment", from:prezto, as:plugin
 zplug "modules/completion", from:prezto, as:plugin
 zplug "modules/history", from:prezto, as:plugin
+zplug "modules/directory", from:prezto, as:plugin
 
 # search history using up/down 
 zplug "modules/history-substring-search", from:prezto, as:plugin
