@@ -52,6 +52,7 @@ brew "terraform"
 brew "vault"
 brew "terragrunt"
 brew "kubernetes-helm"
+brew "packer"
 
 brew "graphviz"
 brew "ffmpeg"
