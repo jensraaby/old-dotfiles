@@ -60,3 +60,9 @@
 
   diff = diff --word-diff
 
+  # From jon t
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
