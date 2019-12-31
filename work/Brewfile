@@ -13,6 +13,8 @@ brew "paulp/extras/sbtx", args: ["HEAD"]
 brew "haskell-stack"
 brew "go"
 cask "java8"
+brew "ammonite-repl"
+brew "mono"
 
 brew "fzf"
 brew "jq"
@@ -47,6 +49,7 @@ brew "pinentry-mac"
 cask "keepassxc"
 
 brew "awscli"
+brew "aws-cdk"
 cask "google-cloud-sdk"
 brew "terraform"
 brew "vault"
