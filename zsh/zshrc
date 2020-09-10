@@ -71,3 +71,6 @@ path=($path $GOPATH/bin)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/jens/.sdkman"
+[[ -s "/Users/jens/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jens/.sdkman/bin/sdkman-init.sh"
